@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: contribhub
+
+api:
+  github:
+    auth-token: ${GIT_AUTH_TOKEN}
