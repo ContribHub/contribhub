@@ -1,4 +1,4 @@
-package org.contribhub.api.http
+package org.contribhub.api.infra.http
 
 import com.fasterxml.jackson.databind.JsonNode
 import org.springframework.beans.factory.annotation.Value

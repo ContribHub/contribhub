@@ -1,7 +1,7 @@
 package org.contribhub.api.controller
 
 import com.fasterxml.jackson.databind.JsonNode
-import org.contribhub.api.http.GithubClient
+import org.contribhub.api.infra.http.GithubClient
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
