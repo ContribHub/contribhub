@@ -14,6 +14,11 @@ class GithubClient(
 ) {
     private val host = "https://api.github.com"
 
+    /**
+     * @see <a href = "https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories">Search repositories API Spec</a>
+     * @see <a href = "https://docs.github.com/ko/search-github/searching-on-github/searching-for-repositories">Search Qualifiers</a>
+     * @query query: The search keywords, as well as any qualifiers.
+     */
     suspend fun searchRepositories(
         query: String,
         sort: String? = "stars",
@@ -23,8 +28,15 @@ class GithubClient(
     ): JsonNode =
         webClient
             .get()
-            .uri("$host/search/repositories?q=$query?sort=$sort&order=$order&per_page=$perPage&page=$page")
-            .headers {
+            .uri("$host/search/repositories") { uriBuilder ->
+                uriBuilder
+                    .queryParam("q", query)
+                    .queryParam("sort", sort)
+                    .queryParam("order", order)
+                    .queryParam("per_page", perPage)
+                    .queryParam("page", page)
+                    .build()
+            }.headers {
                 it.add(HttpHeaders.AUTHORIZATION, "Bearer $apiToken")
             }.retrieve()
             .awaitBody()
