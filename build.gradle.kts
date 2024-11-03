@@ -40,9 +40,9 @@ dependencies {
 }
 //jpa사용을 위해 jpa사용 어노테이션에 대해서 open 처리.
 allOpen{
-    annotation("javax.persistence.Entity")
-    annotation("javax.persistence.MappedSuperclass")
-    annotation("javax.persistence.Embeddable")
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Embeddable")
 }
 
 kotlin {
