@@ -4,8 +4,13 @@ import org.contribhub.api.infra.repository.entity.TopicEntity
 import org.springframework.stereotype.Repository
 
 @Repository
-class TopicRepository {
-    fun getTopics(): List<TopicEntity> =
+interface TopicJpaRepository {
+    fun getTopics(): List<TopicEntity>
+}
+
+@Repository
+class MockTopicJpaRepository : TopicJpaRepository {
+    override fun getTopics(): List<TopicEntity> =
         listOf(
             "3D",
             "Ajax",
