@@ -1,6 +1,6 @@
 package org.contribhub.api.infra.http
 
-import com.fasterxml.jackson.databind.JsonNode
+import org.contribhub.api.infra.http.dto.GithubRepositoryResponse
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
 import org.springframework.stereotype.Component
@@ -21,11 +21,11 @@ class GithubClient(
      */
     suspend fun searchRepositories(
         query: String,
-        sort: String? = "stars",
+        sort: String? = "stars", // stars, forks, help-wanted-issues, updated
         order: String? = "desc",
-        perPage: Int? = 10,
+        perPage: Int? = 30, // max : 100
         page: Int? = 1,
-    ): JsonNode =
+    ): GithubRepositoryResponse =
         webClient
             .get()
             .uri("$host/search/repositories") { uriBuilder ->
