@@ -2,6 +2,7 @@ package org.contribhub.api.infra.http.dto
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.databind.annotation.JsonNaming
+import org.contribhub.api.infra.repository.entity.RepositoryEntity
 import java.time.Instant
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
@@ -25,6 +26,7 @@ data class GithubRepositoryResponse(
         val createdAt: Instant,
         val updatedAt: Instant,
         val license: License?,
+        val language: String?,
     )
 
     @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
@@ -39,4 +41,24 @@ data class GithubRepositoryResponse(
         val name: String,
         val spdxId: String?,
     )
+
+    fun toRepositoryEntities(): List<RepositoryEntity> =
+        this.items.map {
+            RepositoryEntity(
+                repoId = it.id,
+                repoName = it.name,
+                repoFullName = it.fullName,
+                repoDescription = it.description,
+                ownerName = it.owner.login,
+                ownerId = it.owner.id,
+                forkCount = it.forkCount,
+                openIssueCount = it.openIssueCount,
+                mainUrl = it.htmlUrl,
+                starCount = it.stargazersCount,
+                createdAt = it.createdAt,
+                updatedAt = it.updatedAt,
+                licenSeq = null,
+                languageSeq = null,
+            )
+        }
 }
