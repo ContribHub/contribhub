@@ -21,9 +21,11 @@ class GithubClient(
      */
     suspend fun searchRepositories(
         query: String,
-        sort: String? = "stars", // stars, forks, help-wanted-issues, updated
+        // stars, forks, help-wanted-issues, updated
+        sort: String? = "stars",
         order: String? = "desc",
-        perPage: Int? = 30, // max : 100
+        // max : 100
+        perPage: Int? = 30,
         page: Int? = 1,
     ): GithubRepositoryResponse =
         webClient

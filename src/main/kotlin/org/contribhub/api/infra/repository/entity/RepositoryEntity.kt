@@ -17,6 +17,8 @@ data class RepositoryEntity(
     val starCount: Int,
     val createdAt: Instant,
     val updatedAt: Instant,
-    val licenSeq: Int?, // TODO 라이센스 없을 수 있음 논의 필요
-    val languageSeq: Int?, // TODO 언어 없을 수 있음 논의 필요
+    // TODO 라이센스 없을 수 있음 논의 필요
+    val licenSeq: Int?,
+    // TODO 언어 없을 수 있음 논의 필요
+    val languageSeq: Int?,
 )
