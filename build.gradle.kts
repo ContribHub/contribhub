@@ -8,7 +8,7 @@ plugins {
     id("org.springframework.boot") version "3.3.4"
     id("io.spring.dependency-management") version "1.1.6"
     id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
-    kotlin("plugin.jpa") version "1.9.25" //jpa 사용을 위한 플러그인 추가.
+    kotlin("plugin.jpa") version "1.9.25" // jpa 사용을 위한 플러그인 추가.
 }
 
 group = "org.contribhub"
@@ -35,11 +35,14 @@ dependencies {
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
-    //jpa 설정 추가.
+    // jpa 설정 추가.
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+
+    runtimeOnly("org.postgresql:postgresql")
 }
-//jpa사용을 위해 jpa사용 어노테이션에 대해서 open 처리.
-allOpen{
+// jpa사용을 위해 jpa사용 어노테이션에 대해서 open 처리.
+allOpen {
+
     annotation("jakarta.persistence.Entity")
     annotation("jakarta.persistence.MappedSuperclass")
     annotation("jakarta.persistence.Embeddable")
