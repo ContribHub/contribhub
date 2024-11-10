@@ -5,6 +5,7 @@ import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import kotlinx.coroutines.runBlocking
 import org.contribhub.api.service.GithubService
+import org.contribhub.api.service.dto.UserInfo
 import org.springframework.http.HttpHeaders
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
@@ -19,15 +20,23 @@ class GithubAuthFilter(
         filterChain: FilterChain,
     ) {
         val authHeader = request.getHeader(HttpHeaders.AUTHORIZATION)
-        if (authHeader != null && authHeader.startsWith(ACCESS_TOKEN_PREFIX)) {
-            val accessToken = authHeader.substringAfter(ACCESS_TOKEN_PREFIX)
+        if (authHeader == null || !authHeader.startsWith(ACCESS_TOKEN_PREFIX)) {
+            return filterChain.doFilter(request, response)
+        }
 
-            val user =
-                runBlocking {
+        val accessToken: String = authHeader.substringAfter(ACCESS_TOKEN_PREFIX)
+
+        val user: UserInfo? =
+            runBlocking {
+                runCatching {
                     githubService.getAuthenticatedUser(accessToken).toUserInfo()
-                }
+                }.getOrNull()
+            }
+
+        if (user != null) {
             SecurityContextHolder.getContext().authentication = UsernamePasswordAuthenticationToken(user, null, emptyList())
         }
+
         filterChain.doFilter(request, response)
     }
 
