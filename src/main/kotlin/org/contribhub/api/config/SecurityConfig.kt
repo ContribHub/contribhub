@@ -22,7 +22,7 @@ class SecurityConfig(
             .addFilterBefore(GithubAuthFilter(githubService), UsernamePasswordAuthenticationFilter::class.java)
             .authorizeHttpRequests {
                 it
-                    .requestMatchers(HttpMethod.GET, "/login", "/github/login/callback")
+                    .requestMatchers(HttpMethod.GET, "/login", "/github/login/callback", "/error")
                     .permitAll()
                     .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/swagger-resources/**", "/v3/api-docs/**")
                     .permitAll()
