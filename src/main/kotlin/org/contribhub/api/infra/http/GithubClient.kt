@@ -2,6 +2,7 @@ package org.contribhub.api.infra.http
 
 import org.contribhub.api.infra.http.dto.GithubCodeToAccessRequest
 import org.contribhub.api.infra.http.dto.GithubCodeToAccessTokenResponse
+import org.contribhub.api.infra.http.dto.GithubGetAuthenticatedUserResponse
 import org.contribhub.api.infra.http.dto.GithubRepositoryResponse
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
@@ -19,7 +20,11 @@ class GithubClient(
     @Value("\${api.github.client-id}") private val clientId: String,
     @Value("\${api.github.client-secret}") private val clientSecret: String,
 ) {
-    private val host = "https://api.github.com"
+    companion object {
+        private const val GITHUB_API_HOST = "https://api.github.com"
+
+        private const val GITHUB_HOST = "https://github.com"
+    }
 
     /**
      * @see <a href = "https://docs.github.com/en/rest/search/search?apiVersion=2022-11-28#search-repositories">Search repositories API Spec</a>
@@ -37,7 +42,7 @@ class GithubClient(
     ): GithubRepositoryResponse =
         webClient
             .get()
-            .uri("$host/search/repositories") { uriBuilder ->
+            .uri("$GITHUB_API_HOST/search/repositories") { uriBuilder ->
                 uriBuilder
                     .queryParam("q", query)
                     .queryParam("sort", sort)
@@ -52,10 +57,10 @@ class GithubClient(
     /**
      * @see<a href="https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps">Authorizing OAuth apps</a>
      */
-    suspend fun codeToAccessToken(code: String): GithubCodeToAccessTokenResponse =
+    suspend fun resolveCodeToAccessToken(code: String): GithubCodeToAccessTokenResponse =
         webClient
             .post()
-            .uri("https://github.com/login/oauth/access_token")
+            .uri("$GITHUB_HOST/login/oauth/access_token")
             .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
             .body(
                 BodyInserters.fromValue(
@@ -65,4 +70,15 @@ class GithubClient(
             .onStatus(HttpStatusCode::is4xxClientError) {
                 throw IllegalArgumentException("Invalid Code ($code)")
             }.awaitBody()
+
+    /**
+     * @see <a href="https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#get-the-authenticated-user">Get the authenticated User</a>
+     */
+    suspend fun getAuthenticatedUser(accessToken: String): GithubGetAuthenticatedUserResponse =
+        webClient
+            .get()
+            .uri("$GITHUB_API_HOST/user")
+            .header(HttpHeaders.AUTHORIZATION, "Bearer $accessToken")
+            .retrieve()
+            .awaitBody()
 }
