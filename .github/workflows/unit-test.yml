@@ -25,6 +25,8 @@ jobs:
       - name: Build with Gradle
         env: # Or as an environment variable
           GIT_AUTH_TOKEN: ${{ secrets.GIT_AUTH_TOKEN }}
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
         run: ./gradlew build --stacktrace
 
       # 테스트 후 Result를 보기위해 Publish Unit Test Results step 추가
