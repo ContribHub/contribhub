@@ -25,4 +25,4 @@ jobs:
       - name: Build with Gradle
         env: # Or as an environment variable
           GIT_AUTH_TOKEN: ${{ secrets.GIT_AUTH_TOKEN }}
-        run: ./gradlew build --debug --stacktrace
+        run: ./gradlew build --stacktrace
