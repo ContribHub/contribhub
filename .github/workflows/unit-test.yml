@@ -6,6 +6,8 @@ on:
   pull_request:
     branches: ["main", "develop"]
 
+permissions: write-all
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,4 +27,13 @@ jobs:
       - name: Build with Gradle
         env: # Or as an environment variable
           GIT_AUTH_TOKEN: ${{ secrets.GIT_AUTH_TOKEN }}
-        run: ./gradlew build
+          CLIENT_ID: ${{ secrets.CLIENT_ID }}
+          CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+        run: ./gradlew build --stacktrace
+
+      # 테스트 후 Result를 보기위해 Publish Unit Test Results step 추가
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: ${{ always() }}  # 테스트가 실패하여도 Report를 보기 위해 `always`로 설정
+        with:
+         files: build/test-results/**/*.xml
