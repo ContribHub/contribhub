@@ -1,0 +1,3 @@
+package org.contribhub.api.domain.opensourcerepository.repository.issues
+
+interface CustomIssueEntityRepository
