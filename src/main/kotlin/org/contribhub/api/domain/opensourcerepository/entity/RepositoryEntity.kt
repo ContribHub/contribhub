@@ -24,8 +24,7 @@ class RepositoryEntity(
     openIssueCount: Int,
     mainUrl: String,
     repoDescription: String,
-    viewCount: String,
-    startCount: Int,
+    starCount: Int,
     licenseEntity: LicenseEntity,
     languageEntity: LanguageEntity,
 ) : BaseTimeEntity() {
@@ -71,11 +70,11 @@ class RepositoryEntity(
         protected set
 
     @Column(name = "view_count")
-    var viewCount = viewCount
+    var viewCount = 0
         protected set
 
-    @Column(name = "start_count")
-    var startCount = startCount
+    @Column(name = "star_count")
+    var starCount = starCount
         protected set
 
     @ManyToOne(fetch = FetchType.LAZY)
