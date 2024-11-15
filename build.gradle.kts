@@ -1,6 +1,7 @@
 object Versions {
     const val COROUTINE_VERSION = "1.8.1"
     const val JACKSON_KOTLIN = "2.17.0"
+    const val KOTLIN_JSDL = "3.5.3"
 }
 
 plugins {
@@ -44,10 +45,24 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
     runtimeOnly("org.postgresql:postgresql")
+
+    // kotlin jdsl
+    implementation("com.linecorp.kotlin-jdsl:jpql-dsl:${Versions.KOTLIN_JSDL}")
+    implementation("com.linecorp.kotlin-jdsl:jpql-render:${Versions.KOTLIN_JSDL}")
+    implementation("com.linecorp.kotlin-jdsl:spring-data-jpa-support:${Versions.KOTLIN_JSDL}")
+    implementation("com.linecorp.kotlin-jdsl:hibernate-support:${Versions.KOTLIN_JSDL}")
+//    implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-start-jakarta:${Versions.KOTLIN_JSDL}")
+//    implementation("com.linecorp.kotlin-jdsl:hibernate-kotlin-jdsl-jakarta:${Versions.KOTLIN_JSDL}")
 }
 // jpa사용을 위해 jpa사용 어노테이션에 대해서 open 처리.
 allOpen {
 
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Embeddable")
+}
+
+noArg {
     annotation("jakarta.persistence.Entity")
     annotation("jakarta.persistence.MappedSuperclass")
     annotation("jakarta.persistence.Embeddable")
