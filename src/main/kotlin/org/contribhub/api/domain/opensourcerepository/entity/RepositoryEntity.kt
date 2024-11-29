@@ -30,7 +30,6 @@ class RepositoryEntity(
     ownerName: String,
     ownerId: String,
     forkCount: Int,
-    mainLanauge: String,
     openIssueCount: Int,
     mainUrl: String,
     repoDescription: String,
@@ -65,10 +64,6 @@ class RepositoryEntity(
 
     @Column(name = "fork_count", columnDefinition = "integer default 0")
     var forkCount = forkCount
-        protected set
-
-    @Column(name = "main_language", columnDefinition = "VARCHAR(20)")
-    var mainLanauge = mainLanauge
         protected set
 
     @Column(name = "open_issue_count", columnDefinition = "integer default 0")
