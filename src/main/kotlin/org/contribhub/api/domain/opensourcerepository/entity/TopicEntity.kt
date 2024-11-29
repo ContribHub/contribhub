@@ -9,10 +9,19 @@ import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
+import jakarta.persistence.UniqueConstraint
 import org.contribhub.api.domain.opensourcerepository.entity.common.BaseTimeEntity
 
 @Entity
-@Table(name = "Topics")
+@Table(
+    name = "topics",
+    uniqueConstraints = [
+        UniqueConstraint(
+            name = "topic_name_unique",
+            columnNames = ["topic_name"],
+        ),
+    ],
+)
 class TopicEntity(
     topicName: String,
     topicDisplayName: String,

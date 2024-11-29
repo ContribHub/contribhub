@@ -10,10 +10,19 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
+import jakarta.persistence.UniqueConstraint
 import org.contribhub.api.domain.opensourcerepository.entity.common.BaseTimeEntity
 
 @Entity
-@Table(name = "repositories")
+@Table(
+    name = "repositories",
+    uniqueConstraints = [
+        UniqueConstraint(
+            name = "repo_id_unique",
+            columnNames = ["repo_id"],
+        ),
+    ],
+)
 class RepositoryEntity(
     repoId: String,
     repoName: String,
@@ -33,7 +42,7 @@ class RepositoryEntity(
     @Column(name = "repo_seq")
     val repoSeq: Long? = null
 
-    @Column(name = "repo_id")
+    @Column(name = "repo_id", columnDefinition = "VARCHAR(20)")
     var repoId: String = repoId
         protected set
 

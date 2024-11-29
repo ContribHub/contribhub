@@ -6,10 +6,19 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import jakarta.persistence.UniqueConstraint
 import org.contribhub.api.domain.opensourcerepository.entity.common.BaseTimeEntity
 
 @Entity
-@Table(name = "Issues")
+@Table(
+    name = "issues",
+    uniqueConstraints = [
+        UniqueConstraint(
+            name = "issue_id_unique",
+            columnNames = ["issue_id"],
+        ),
+    ],
+)
 class IssueEntity(
     issueId: String,
     issueTitle: String,

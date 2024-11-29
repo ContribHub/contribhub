@@ -6,10 +6,19 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import jakarta.persistence.UniqueConstraint
 import org.contribhub.api.domain.opensourcerepository.entity.common.BaseTimeEntity
 
 @Entity
-@Table(name = "licenses")
+@Table(
+    name = "licenses",
+    uniqueConstraints = [
+        UniqueConstraint(
+            name = "licen_key_unique",
+            columnNames = ["licen_key"],
+        ),
+    ],
+)
 class LicenseEntity(
     licenKey: String,
     licenName: String,
