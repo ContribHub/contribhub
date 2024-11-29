@@ -34,19 +34,19 @@ class TopicEntity(
     @Column(name = "topic_seq")
     val topicSeq: Long? = null
 
-    @Column(name = "topic_name")
+    @Column(name = "topic_name", columnDefinition = "VARCHAR(100)")
     var topicName = topicName
         protected set
 
-    @Column(name = "topic_disply_name")
+    @Column(name = "topic_disply_name", columnDefinition = "VARCHAR(500)")
     var topicDisplayName = topicDisplayName
         protected set
 
-    @Column(name = "stort_description")
+    @Column(name = "stort_description", columnDefinition = "VARCHAR(500)")
     var shortDescription = shortDescription
         protected set
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "TEXT")
     var description = description
         protected set
 

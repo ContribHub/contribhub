@@ -30,6 +30,7 @@ class RepositoryEntity(
     ownerName: String,
     ownerId: String,
     forkCount: Int,
+    mainLanauge: String,
     openIssueCount: Int,
     mainUrl: String,
     repoDescription: String,
@@ -46,43 +47,47 @@ class RepositoryEntity(
     var repoId: String = repoId
         protected set
 
-    @Column(name = "repo_name")
+    @Column(name = "repo_name", columnDefinition = "VARCHAR(50)")
     var repoName = repoName
         protected set
 
-    @Column(name = "repo_full_name")
+    @Column(name = "repo_full_name", columnDefinition = "VARCHAR(100)")
     var repoFullName = repoFullName
         protected set
 
-    @Column(name = "owner_name")
+    @Column(name = "owner_name", columnDefinition = "VARCHAR(50)")
     var ownerName = ownerName
         protected set
 
-    @Column(name = "owner_id")
+    @Column(name = "owner_id", columnDefinition = "VARCHAR(20)")
     var ownerId = ownerId
         protected set
 
-    @Column(name = "fork_count")
+    @Column(name = "fork_count", columnDefinition = "integer default 0")
     var forkCount = forkCount
         protected set
 
-    @Column(name = "open_issue_count")
+    @Column(name = "main_language", columnDefinition = "VARCHAR(20)")
+    var mainLanauge = mainLanauge
+        protected set
+
+    @Column(name = "open_issue_count", columnDefinition = "integer default 0")
     var openIssueCount = openIssueCount
         protected set
 
-    @Column(name = "main_url")
+    @Column(name = "main_url", columnDefinition = "VARCHAR(2083)")
     var mainUrl = mainUrl
         protected set
 
-    @Column(name = "repo_description")
+    @Column(name = "repo_description", columnDefinition = "TEXT")
     var repoDescription = repoDescription
         protected set
 
-    @Column(name = "view_count")
+    @Column(name = "view_count", columnDefinition = "integer default 0")
     var viewCount = 0
         protected set
 
-    @Column(name = "star_count")
+    @Column(name = "star_count", columnDefinition = "integer default 0")
     var starCount = starCount
         protected set
 

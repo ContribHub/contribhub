@@ -32,27 +32,27 @@ class IssueEntity(
     @Column(name = "issue_seq")
     val issueSeq: Long? = null
 
-    @Column(name = "issue_id")
+    @Column(name = "issue_id", columnDefinition = "VARCHAR(10)")
     var issueId = issueId
         protected set
 
-    @Column(name = "issue_title")
+    @Column(name = "issue_title", columnDefinition = "VARCHAR(200)")
     var issueTitle = issueTitle
         protected set
 
-    @Column(name = "issue_url")
+    @Column(name = "issue_url", columnDefinition = "VARCHAR(2083)")
     var issueUrl = issueUrl
         protected set
 
-    @Column(name = "issue_owner_name")
+    @Column(name = "issue_owner_name", columnDefinition = "VARCHAR(50)")
     var issueOwnerName = issueOwnerName
         protected set
 
-    @Column(name = "issue_owner_id")
+    @Column(name = "issue_owner_id", columnDefinition = "VARCHAR(20)")
     var issueOwnerId = issueOwnerId
         protected set
 
-    @Column(name = "open_yn")
+    @Column(name = "open_yn", columnDefinition = "boolean default true")
     var openYn = openYn
         protected set
 

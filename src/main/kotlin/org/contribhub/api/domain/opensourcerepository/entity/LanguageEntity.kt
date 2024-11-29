@@ -27,7 +27,7 @@ class LanguageEntity(
     @Column(name = "language_seq")
     val languageSeq: Long? = null
 
-    @Column(name = "language")
+    @Column(name = "language", columnDefinition = "VARCHAR(20)")
     var language = language
         protected set
 

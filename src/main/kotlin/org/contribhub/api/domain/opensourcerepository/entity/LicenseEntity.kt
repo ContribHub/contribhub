@@ -29,15 +29,15 @@ class LicenseEntity(
     @Column(name = "licen_seq")
     val licenSeq: Long? = null
 
-    @Column(name = "licen_key")
+    @Column(name = "licen_key", columnDefinition = "VARCHAR(50)")
     var licenKey = licenKey
         protected set
 
-    @Column(name = "licen_name")
+    @Column(name = "licen_name", columnDefinition = "VARCHAR(200)")
     var licenName = licenName
         protected set
 
-    @Column(name = "licen_url")
+    @Column(name = "licen_url", columnDefinition = "VARCHAR(2083)")
     var licenUrl = licenUrl
         protected set
 
