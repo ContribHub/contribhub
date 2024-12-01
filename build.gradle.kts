@@ -3,6 +3,7 @@ object Versions {
     const val JACKSON_KOTLIN = "2.17.0"
     const val KOTLIN_JSDL = "3.5.3"
     const val TEST_CONTAINER = "1.19.1"
+    const val LOGGER = "7.0.0"
 }
 
 plugins {
@@ -35,6 +36,9 @@ dependencies {
     implementation("org.springframework:spring-webflux")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:${Versions.COROUTINE_VERSION}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.JACKSON_KOTLIN}")
+
+    // 로그 관련 라이브러리
+    implementation("io.github.oshai:kotlin-logging-jvm:${Versions.LOGGER}")
 
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
