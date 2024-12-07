@@ -18,7 +18,7 @@ import java.time.Instant
 @ActiveProfiles("test")
 @Testcontainers
 @Import(TestConfig::class)
-class CustomRepositoryEntityRepositoryImplTest(
+class CustomRepositoryEntityRepositoryImpleTest(
     @Autowired private val repositoryEntityRepository: RepositoryEntityRepository,
 ) {
     @Test
