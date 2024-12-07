@@ -28,7 +28,16 @@ class SecurityConfig(
                 it
                     .requestMatchers(HttpMethod.GET, "/login", "/github/login/callback", "/error")
                     .permitAll()
-                    .requestMatchers(HttpMethod.GET, "/swagger-ui/**", "/swagger-resources/**", "/v3/api-docs/**")
+                    .requestMatchers(
+                        HttpMethod.GET,
+                        "/swagger-ui/**",
+                        "/swagger-resources/**",
+                        "/v3/api-docs/**",
+                        "/languages",
+                        "/licenses",
+                        "/topics",
+                        "/repositories",
+                    ) // 기본 검색용 api 허용
                     .permitAll()
                     .anyRequest()
                     .authenticated()
