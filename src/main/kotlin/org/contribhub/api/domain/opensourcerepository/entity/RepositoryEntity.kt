@@ -34,6 +34,7 @@ class RepositoryEntity(
     mainUrl: String,
     repoDescription: String,
     starCount: Int,
+    viewCount: Int,
     licenseEntity: LicenseEntity,
     languageEntity: LanguageEntity,
 ) : BaseTimeEntity() {
@@ -79,7 +80,7 @@ class RepositoryEntity(
         protected set
 
     @Column(name = "view_count", columnDefinition = "integer default 0")
-    var viewCount = 0
+    var viewCount = viewCount
         protected set
 
     @Column(name = "star_count", columnDefinition = "integer default 0")
