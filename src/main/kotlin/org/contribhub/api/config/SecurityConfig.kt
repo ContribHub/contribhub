@@ -36,7 +36,7 @@ class SecurityConfig(
                         "/languages",
                         "/licenses",
                         "/topics",
-                        "/repositories",
+                        "/repositories/**",
                     ) // 기본 검색용 api 허용
                     .permitAll()
                     .anyRequest()
