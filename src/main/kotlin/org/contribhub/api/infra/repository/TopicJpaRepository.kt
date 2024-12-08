@@ -1,16 +1,16 @@
 package org.contribhub.api.infra.repository
 
-import org.contribhub.api.infra.repository.entity.TopicEntity
+import org.contribhub.api.infra.http.dto.TopicInfoDTO
 import org.springframework.stereotype.Repository
 
 @Repository
 interface TopicJpaRepository {
-    fun getTopics(): List<TopicEntity>
+    fun getTopics(): List<TopicInfoDTO>
 }
 
 @Repository
 class MockTopicJpaRepository : TopicJpaRepository {
-    override fun getTopics(): List<TopicEntity> =
+    override fun getTopics(): List<TopicInfoDTO> =
         listOf(
             "3D",
             "Ajax",
@@ -178,5 +178,5 @@ class MockTopicJpaRepository : TopicJpaRepository {
             "Unity",
             "Unreal Engine",
             "Vagrant",
-        ).map(::TopicEntity)
+        ).map(::TopicInfoDTO)
 }
