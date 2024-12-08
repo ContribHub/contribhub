@@ -2,9 +2,12 @@ package org.contribhub.api.domain.opensourcerepository.entity
 
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.FetchType
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
 import org.contribhub.api.domain.opensourcerepository.entity.common.BaseTimeEntity
@@ -26,6 +29,7 @@ class IssueEntity(
     issueOwnerName: String,
     issueOwnerId: String,
     openYn: Boolean,
+    repositoryEntity: RepositoryEntity,
 ) : BaseTimeEntity() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,5 +60,8 @@ class IssueEntity(
     var openYn = openYn
         protected set
 
-    // 레포지토리의 연관관계는 필요할때 설정.
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "repo_seq")
+    var repositoryEntity = repositoryEntity
+        protected set
 }
