@@ -6,10 +6,19 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import jakarta.persistence.UniqueConstraint
 import org.contribhub.api.domain.opensourcerepository.entity.common.BaseTimeEntity
 
 @Entity
-@Table(name = "licenses")
+@Table(
+    name = "licenses",
+    uniqueConstraints = [
+        UniqueConstraint(
+            name = "licen_key_unique",
+            columnNames = ["licen_key"],
+        ),
+    ],
+)
 class LicenseEntity(
     licenKey: String,
     licenName: String,
@@ -20,15 +29,15 @@ class LicenseEntity(
     @Column(name = "licen_seq")
     val licenSeq: Long? = null
 
-    @Column(name = "licen_key")
+    @Column(name = "licen_key", columnDefinition = "VARCHAR(50)")
     var licenKey = licenKey
         protected set
 
-    @Column(name = "licen_name")
+    @Column(name = "licen_name", columnDefinition = "VARCHAR(200)")
     var licenName = licenName
         protected set
 
-    @Column(name = "licen_url")
+    @Column(name = "licen_url", columnDefinition = "VARCHAR(2083)")
     var licenUrl = licenUrl
         protected set
 

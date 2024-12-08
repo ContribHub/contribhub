@@ -6,10 +6,19 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import jakarta.persistence.UniqueConstraint
 import org.contribhub.api.domain.opensourcerepository.entity.common.BaseTimeEntity
 
 @Entity
-@Table(name = "languages")
+@Table(
+    name = "languages",
+    uniqueConstraints = [
+        UniqueConstraint(
+            name = "language_unique",
+            columnNames = ["language"],
+        ),
+    ],
+)
 class LanguageEntity(
     language: String,
 ) : BaseTimeEntity() {
@@ -18,7 +27,7 @@ class LanguageEntity(
     @Column(name = "language_seq")
     val languageSeq: Long? = null
 
-    @Column(name = "language")
+    @Column(name = "language", columnDefinition = "VARCHAR(20)")
     var language = language
         protected set
 

@@ -9,10 +9,19 @@ import jakarta.persistence.Id
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
+import jakarta.persistence.UniqueConstraint
 import org.contribhub.api.domain.opensourcerepository.entity.common.BaseTimeEntity
 
 @Entity
-@Table(name = "Topics")
+@Table(
+    name = "topics",
+    uniqueConstraints = [
+        UniqueConstraint(
+            name = "topic_name_unique",
+            columnNames = ["topic_name"],
+        ),
+    ],
+)
 class TopicEntity(
     topicName: String,
     topicDisplayName: String,
@@ -25,19 +34,19 @@ class TopicEntity(
     @Column(name = "topic_seq")
     val topicSeq: Long? = null
 
-    @Column(name = "topic_name")
+    @Column(name = "topic_name", columnDefinition = "VARCHAR(100)")
     var topicName = topicName
         protected set
 
-    @Column(name = "topic_disply_name")
+    @Column(name = "topic_display_name", columnDefinition = "VARCHAR(500)")
     var topicDisplayName = topicDisplayName
         protected set
 
-    @Column(name = "stort_description")
+    @Column(name = "stort_description", columnDefinition = "VARCHAR(500)")
     var shortDescription = shortDescription
         protected set
 
-    @Column(name = "description")
+    @Column(name = "description", columnDefinition = "TEXT")
     var description = description
         protected set
 
