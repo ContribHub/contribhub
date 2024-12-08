@@ -1,6 +1,7 @@
 package org.contribhub.api.domain.opensourcerepository.repository.repositories
 
 import com.linecorp.kotlinjdsl.support.spring.data.jpa.repository.KotlinJdslJpqlExecutor
+import org.contribhub.api.domain.opensourcerepository.dto.response.RepositoryDetailResponse
 import org.contribhub.api.domain.opensourcerepository.dto.response.RepositoryListResponse
 import org.contribhub.api.domain.opensourcerepository.entity.LanguageEntity
 import org.contribhub.api.domain.opensourcerepository.entity.LicenseEntity
@@ -48,5 +49,41 @@ class CustomRepositoryEntityRepositoryImpl(
                 path(RepositoryEntity::repoSeq).asc(),
             )
         }.filterNotNull()
+    }
+
+    override fun findRepositoryDetail(repoId: Long): RepositoryDetailResponse? {
+        /**
+         * TODO : 단건조회시 사용하려면 renderContext, entityManager를 주입받아서 사용해야 하고, 로직이 복잡해짐
+         *        우선 findAll로 조회하고, 그중 첫번째 값을 뽑는 방식으로 처리하고 추후에 공식문서에서 제공하는 방식으로 변경.
+         */
+        return jpqlExecutor.findAll {
+            selectNew<RepositoryDetailResponse>(
+                path(RepositoryEntity::repoSeq).`as`(expression(Long::class, "repoId")),
+                path(RepositoryEntity::repoName),
+                path(RepositoryEntity::ownerId).`as`(expression(String::class, "repoOwnerId")),
+                path(RepositoryEntity::ownerName).`as`(expression(String::class, "repoOwnerName")),
+                path(RepositoryEntity::openIssueCount),
+                path(RepositoryEntity::mainUrl).`as`(expression(String::class, "repoUrl")),
+                path(RepositoryEntity::viewCount),
+                path(RepositoryEntity::starCount),
+                path(RepositoryEntity::licenseEntity).path(LicenseEntity::licenName).`as`(expression(String::class, "licenseName")),
+                path(RepositoryEntity::languageEntity).path(LanguageEntity::language).`as`(expression(String::class, "mainLanguage")),
+                path(RepositoryEntity::repoFullName),
+                path(RepositoryEntity::repoDescription),
+                path(RepositoryEntity::forkCount),
+            ).from(
+                entity(RepositoryEntity::class),
+//                leftFetchJoin(RepositoryEntity::languageEntity),
+//                leftFetchJoin(RepositoryEntity::licenseEntity)
+                leftJoin(
+                    LanguageEntity::class,
+                ).on(path(LanguageEntity::languageSeq).eq(path(RepositoryEntity::languageEntity).path(LanguageEntity::languageSeq))),
+                leftJoin(
+                    LicenseEntity::class,
+                ).on(path(LicenseEntity::licenSeq).eq(path(RepositoryEntity::licenseEntity).path(LicenseEntity::licenSeq))),
+            ).where(
+                path(RepositoryEntity::repoSeq).eq(repoId),
+            )
+        }.firstOrNull()
     }
 }

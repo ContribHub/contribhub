@@ -1,5 +1,6 @@
 package org.contribhub.api.domain.opensourcerepository.repository.repositories
 
+import org.contribhub.api.domain.opensourcerepository.dto.response.RepositoryDetailResponse
 import org.contribhub.api.domain.opensourcerepository.dto.response.RepositoryListResponse
 import org.springframework.data.domain.Pageable
 
@@ -9,4 +10,7 @@ interface CustomRepositoryEntityRepository {
         lastId: Long,
         pageable: Pageable,
     ): List<RepositoryListResponse>
+
+    // 레포지토리 상세 조회
+    fun findRepositoryDetail(repoId: Long): RepositoryDetailResponse?
 }

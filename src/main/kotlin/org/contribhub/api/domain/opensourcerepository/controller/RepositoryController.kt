@@ -2,10 +2,13 @@ package org.contribhub.api.domain.opensourcerepository.controller
 
 import org.contribhub.api.common.response.ResponseService
 import org.contribhub.api.common.response.success.CustomSuccessResponse
+import org.contribhub.api.domain.opensourcerepository.dto.response.IssueListResponse
+import org.contribhub.api.domain.opensourcerepository.dto.response.RepositoryDetailResponse
 import org.contribhub.api.domain.opensourcerepository.dto.response.RepositoryListResponse
 import org.contribhub.api.domain.opensourcerepository.service.RepositoryService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
@@ -21,5 +24,21 @@ class RepositoryController(
     ): CustomSuccessResponse<List<RepositoryListResponse>> {
         // TODO : entity <-> dto간 변환은 별도의 매퍼클래스를 두어 처리하는 것이 좋을 듯 - 당장은 구조가 복잡해지니 아래와 같이 사용
         return responseService.getCustomSuccessResponse(repositoryService.getRepositoryList(lastId, size))
+    }
+
+    @GetMapping("/repositories/{repoId}")
+    fun getRepositoryDetail(
+        @PathVariable(name = "repoId", required = true) repoId: Long,
+    ): CustomSuccessResponse<RepositoryDetailResponse> {
+        return responseService.getCustomSuccessResponse(repositoryService.getRepositoryDetail(repoId))
+    }
+
+    @GetMapping("/repositories/{repoId}/issues")
+    fun getIssueListInRepository(
+        @PathVariable(name = "repoId", required = true) repoId: Long,
+        @RequestParam(name = "lastId", required = false, defaultValue = "0") lastId: Long,
+        @RequestParam(name = "size", required = false, defaultValue = "10") size: Int,
+    ): CustomSuccessResponse<List<IssueListResponse>> {
+        return responseService.getCustomSuccessResponse(repositoryService.getIssueListInRepository(repoId, lastId, size))
     }
 }
