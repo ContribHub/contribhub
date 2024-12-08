@@ -38,7 +38,7 @@ class TopicEntity(
     var topicName = topicName
         protected set
 
-    @Column(name = "topic_disply_name", columnDefinition = "VARCHAR(500)")
+    @Column(name = "topic_display_name", columnDefinition = "VARCHAR(500)")
     var topicDisplayName = topicDisplayName
         protected set
 

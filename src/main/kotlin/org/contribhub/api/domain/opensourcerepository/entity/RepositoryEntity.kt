@@ -34,6 +34,7 @@ class RepositoryEntity(
     mainUrl: String,
     repoDescription: String,
     starCount: Int,
+    viewCount: Int,
     licenseEntity: LicenseEntity,
     languageEntity: LanguageEntity,
 ) : BaseTimeEntity() {
@@ -79,7 +80,7 @@ class RepositoryEntity(
         protected set
 
     @Column(name = "view_count", columnDefinition = "integer default 0")
-    var viewCount = 0
+    var viewCount = viewCount
         protected set
 
     @Column(name = "star_count", columnDefinition = "integer default 0")
@@ -96,10 +97,12 @@ class RepositoryEntity(
     var languageEntity = languageEntity
         protected set
 
-    // 토픽_레포지토리 중계테이블과의 연관관계는 필요할때 설정.
-
     // 토픽_레포지토리 중계테이블과의 연관관계는 필요할때 설정 - 레포조회시, 토픽정보가 필요하기 떄문에 설정.
     @OneToMany(mappedBy = "repositoryEntity", fetch = FetchType.LAZY)
     var topicRepositoryEntity: MutableList<TopicRepositoryEntity> = mutableListOf()
         protected set
+
+    // 이슈 목록은 필요함 - 특정 레포지토리에 포함된 이슈리스트 조회시 사용
+    @OneToMany(mappedBy = "repositoryEntity", fetch = FetchType.LAZY)
+    var issueEntity: MutableList<IssueEntity> = mutableListOf()
 }
