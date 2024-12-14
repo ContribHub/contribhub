@@ -87,6 +87,11 @@ kotlin {
     }
 }
 
+// plain jar 생성방지를 위한 설정추가
+tasks.getByName<Jar>("jar") {
+    enabled = false
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
