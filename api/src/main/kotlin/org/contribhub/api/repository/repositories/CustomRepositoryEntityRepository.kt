@@ -1,8 +1,8 @@
 package org.contribhub.api.repository.repositories
 
-import org.contribhub.api.dto.request.RepositorySearchKey
 import org.contribhub.api.dto.response.RepositoryDetailResponse
 import org.contribhub.api.dto.response.RepositoryListResponse
+import org.contribhub.core.service.entity.RepositorySearchKey
 import org.springframework.data.domain.Pageable
 
 interface CustomRepositoryEntityRepository {

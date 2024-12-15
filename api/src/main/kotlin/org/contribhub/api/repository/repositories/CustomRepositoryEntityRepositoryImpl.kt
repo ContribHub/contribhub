@@ -1,7 +1,7 @@
 package org.contribhub.api.repository.repositories
 
 import com.linecorp.kotlinjdsl.support.spring.data.jpa.repository.KotlinJdslJpqlExecutor
-import org.contribhub.api.dto.request.RepositorySearchKey
+import org.contribhub.core.service.entity.RepositorySearchKey
 import org.contribhub.api.dto.response.RepositoryDetailResponse
 import org.contribhub.api.dto.response.RepositoryListResponse
 import org.contribhub.api.entity.LanguageEntity

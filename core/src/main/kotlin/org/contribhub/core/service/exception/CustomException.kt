@@ -1,4 +1,4 @@
-package org.contribhub.api.common.response.exception
+package org.contribhub.core.service.exception
 
 data class CustomException(
     val customExceptionStatus: CustomExceptionStatus,

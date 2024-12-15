@@ -3,8 +3,10 @@ package org.contribhub.api.config
 import org.contribhub.api.infra.adapter.GithubAuthAdapter
 import org.contribhub.api.infra.adapter.LanguageAdapter
 import org.contribhub.api.infra.adapter.LicenseAdapter
+import org.contribhub.api.infra.adapter.RepositoryAdapter
 import org.contribhub.api.infra.adapter.TopicAdapter
 import org.contribhub.api.infra.http.GithubClient
+import org.contribhub.core.service.service.RepositoryService
 import org.contribhub.core.service.service.SearchKeywordService
 import org.contribhub.core.service.service.UserAuthService
 import org.springframework.context.annotation.Bean
@@ -21,4 +23,7 @@ class CoreConfig {
         topicAdapter: TopicAdapter,
         licenseAdapter: LicenseAdapter
     ): SearchKeywordService = SearchKeywordService(languageAdapter, licenseAdapter, topicAdapter)
+
+    @Bean
+    fun repositoryService(repositoryAdapter: RepositoryAdapter): RepositoryService = RepositoryService(repositoryAdapter)
 }

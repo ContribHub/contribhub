@@ -2,11 +2,11 @@ package org.contribhub.api.controller
 
 import org.contribhub.api.common.response.ResponseService
 import org.contribhub.api.common.response.success.CustomSuccessResponse
-import org.contribhub.api.dto.request.RepositorySearchKey
-import org.contribhub.api.dto.response.IssueListResponse
-import org.contribhub.api.dto.response.RepositoryDetailResponse
-import org.contribhub.api.dto.response.RepositoryListResponse
-import org.contribhub.api.service.RepositoryService
+import org.contribhub.core.service.entity.Issue
+import org.contribhub.core.service.entity.Repository
+import org.contribhub.core.service.entity.RepositoryDetail
+import org.contribhub.core.service.entity.RepositorySearchKey
+import org.contribhub.core.service.service.RepositoryService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -31,7 +31,7 @@ class RepositoryController(
         @RequestParam(name = "repoName", required = false) repoName: String?,
         @RequestParam(name = "lastId", required = false, defaultValue = "0") lastId: Long,
         @RequestParam(name = "size", required = false, defaultValue = "10") size: Int,
-    ): CustomSuccessResponse<List<RepositoryListResponse>> {
+    ): CustomSuccessResponse<List<Repository>> {
         // 검색키워드 dto 변환
         val searchKey =
             RepositorySearchKey(
@@ -48,7 +48,7 @@ class RepositoryController(
     @GetMapping("/repositories/{repoId}")
     fun getRepositoryDetail(
         @PathVariable(name = "repoId", required = true) repoId: Long,
-    ): CustomSuccessResponse<RepositoryDetailResponse> =
+    ): CustomSuccessResponse<RepositoryDetail> =
         responseService.getCustomSuccessResponse(repositoryService.getRepositoryDetail(repoId))
 
     @GetMapping("/repositories/{repoId}/issues")
@@ -56,6 +56,6 @@ class RepositoryController(
         @PathVariable(name = "repoId", required = true) repoId: Long,
         @RequestParam(name = "lastId", required = false, defaultValue = "0") lastId: Long,
         @RequestParam(name = "size", required = false, defaultValue = "10") size: Int,
-    ): CustomSuccessResponse<List<IssueListResponse>> =
+    ): CustomSuccessResponse<List<Issue>> =
         responseService.getCustomSuccessResponse(repositoryService.getIssueListInRepository(repoId, lastId, size))
 }
