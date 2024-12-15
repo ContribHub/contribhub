@@ -3,7 +3,6 @@ package org.contribhub.api.service
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
-import org.contribhub.api.domain.opensourcerepository.repository.topics.TopicEntityRepository
 import org.contribhub.api.infra.http.GithubClient
 import org.contribhub.api.infra.http.dto.GithubCodeToAccessTokenResponse
 import org.contribhub.api.infra.http.dto.GithubGetAuthenticatedUserResponse
@@ -11,6 +10,7 @@ import org.contribhub.api.infra.http.dto.GithubRepositoryResponse
 import org.contribhub.api.infra.http.dto.TopicInfoDTO
 import org.contribhub.api.infra.repository.RepositoryJpaRepository
 import org.contribhub.api.infra.repository.entity.RepositoryEntity
+import org.contribhub.api.repository.topics.TopicEntityRepository
 import org.springframework.stereotype.Service
 
 @Service
