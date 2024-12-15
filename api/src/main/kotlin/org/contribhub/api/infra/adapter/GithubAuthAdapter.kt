@@ -1,9 +1,11 @@
 package org.contribhub.api.infra.adapter
 
 import org.contribhub.api.infra.http.GithubClient
-import org.contribhub.core.service.dto.UserInfo
+import org.contribhub.core.service.entity.UserInfo
 import org.contribhub.core.service.repository.GithubAuthRepository
+import org.springframework.stereotype.Component
 
+@Component
 class GithubAuthAdapter(
     private val githubClient: GithubClient,
 ) : GithubAuthRepository {

@@ -1,6 +1,6 @@
 package org.contribhub.core.service.service
 
-import org.contribhub.core.service.dto.UserInfo
+import org.contribhub.core.service.entity.UserInfo
 import org.contribhub.core.service.repository.GithubAuthRepository
 
 class UserAuthService(
