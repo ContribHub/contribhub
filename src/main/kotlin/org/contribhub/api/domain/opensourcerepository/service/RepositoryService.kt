@@ -2,10 +2,12 @@ package org.contribhub.api.domain.opensourcerepository.service
 
 import org.contribhub.api.common.response.exception.CustomException
 import org.contribhub.api.common.response.exception.CustomExceptionStatus
+import org.contribhub.api.domain.opensourcerepository.dto.request.RepositorySearchKey
 import org.contribhub.api.domain.opensourcerepository.dto.response.IssueListResponse
 import org.contribhub.api.domain.opensourcerepository.dto.response.RepositoryDetailResponse
 import org.contribhub.api.domain.opensourcerepository.dto.response.RepositoryListResponse
 import org.contribhub.api.domain.opensourcerepository.repository.issues.IssueEntityRepository
+import org.contribhub.api.domain.opensourcerepository.repository.mapping.TopicRepositoryEntityRepository
 import org.contribhub.api.domain.opensourcerepository.repository.repositories.RepositoryEntityRepository
 import org.springframework.data.domain.PageRequest
 import org.springframework.data.domain.Pageable
@@ -15,16 +17,27 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class RepositoryService(
     private val repositoryEntityRepository: RepositoryEntityRepository,
+    private val topicRepositoryEntityRepository: TopicRepositoryEntityRepository,
     private val issueEntityRepository: IssueEntityRepository,
 ) {
     @Transactional(readOnly = true)
     fun getRepositoryList(
         lastId: Long,
         size: Int,
+        searchKey: RepositorySearchKey,
     ): List<RepositoryListResponse> {
         val pageable: Pageable = PageRequest.of(0, size)
 
-        return repositoryEntityRepository.findRepositoryListPage(lastId, pageable)
+        val repoInTopicList = topicRepositoryEntityRepository.findRepositoryListInTopic(searchKey.topicId)
+
+        println("test licenId = ${searchKey.licenId}")
+
+        return repositoryEntityRepository.findRepositoryListPage(
+            lastId = lastId,
+            pageable = pageable,
+            searchKey = searchKey,
+            repoInTopicList = repoInTopicList,
+        )
     }
 
     @Transactional(readOnly = true)
