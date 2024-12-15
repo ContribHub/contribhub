@@ -37,6 +37,9 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:${Versions.COROUTINE_VERSION}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.JACKSON_KOTLIN}")
 
+    // 스웨거 설정
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.3.0")
+
     // 로그 관련 라이브러리
     implementation("io.github.oshai:kotlin-logging-jvm:${Versions.LOGGER}")
 
