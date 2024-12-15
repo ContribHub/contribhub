@@ -15,6 +15,8 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":core"))
+
     implementation("org.springframework.boot:spring-boot-starter-security")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
@@ -74,5 +76,5 @@ tasks.getByName<Jar>("jar") {
 
 tasks.test {
     systemProperty("spring.profiles.active", "test")
-    // dependsOn(":core:test") TODO module: 주석 해제
+    dependsOn(":core:test")
 }
