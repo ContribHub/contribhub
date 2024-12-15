@@ -4,8 +4,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import org.contribhub.api.infra.http.GithubClient
-import org.contribhub.api.infra.http.dto.GithubCodeToAccessTokenResponse
-import org.contribhub.api.infra.http.dto.GithubGetAuthenticatedUserResponse
 import org.contribhub.api.infra.http.dto.GithubRepositoryResponse
 import org.contribhub.api.infra.http.dto.TopicInfoDTO
 import org.contribhub.api.infra.repository.RepositoryJpaRepository
@@ -53,9 +51,4 @@ class GithubService(
     fun upsertRepositories(repositories: List<RepositoryEntity>) {
         repositoryJpaRepository.upsertRepositories(repositories)
     }
-
-    suspend fun resolveCodeToAccessToken(code: String): GithubCodeToAccessTokenResponse = githubClient.resolveCodeToAccessToken(code)
-
-    suspend fun getAuthenticatedUser(accessToken: String): GithubGetAuthenticatedUserResponse =
-        githubClient.getAuthenticatedUser(accessToken)
 }

@@ -2,7 +2,7 @@ package org.contribhub.api.config
 
 import jakarta.servlet.http.HttpServletResponse
 import org.contribhub.api.controller.filter.GithubAuthFilter
-import org.contribhub.api.service.GithubService
+import org.contribhub.core.service.service.UserAuthService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod
@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 class SecurityConfig(
-    private val githubService: GithubService,
+    private val userAuthService: UserAuthService,
 ) {
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain =
@@ -23,7 +23,7 @@ class SecurityConfig(
             .formLogin { it.disable() }
             .exceptionHandling {
                 it.authenticationEntryPoint(authenticationEntryPoint())
-            }.addFilterBefore(GithubAuthFilter(githubService), UsernamePasswordAuthenticationFilter::class.java)
+            }.addFilterBefore(GithubAuthFilter(userAuthService), UsernamePasswordAuthenticationFilter::class.java)
             .authorizeHttpRequests {
                 it
                     .requestMatchers(HttpMethod.GET, "/login", "/github/login/callback", "/error")

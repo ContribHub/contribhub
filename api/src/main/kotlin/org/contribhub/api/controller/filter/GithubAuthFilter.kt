@@ -4,15 +4,15 @@ import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import kotlinx.coroutines.runBlocking
-import org.contribhub.api.service.GithubService
-import org.contribhub.api.service.dto.UserInfo
+import org.contribhub.core.service.dto.UserInfo
+import org.contribhub.core.service.service.UserAuthService
 import org.springframework.http.HttpHeaders
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.web.filter.OncePerRequestFilter
 
 class GithubAuthFilter(
-    private val githubService: GithubService,
+    private val userAuthService: UserAuthService,
 ) : OncePerRequestFilter() {
     override fun doFilterInternal(
         request: HttpServletRequest,
@@ -29,7 +29,7 @@ class GithubAuthFilter(
         val user: UserInfo? =
             runBlocking {
                 runCatching {
-                    githubService.getAuthenticatedUser(accessToken).toUserInfo()
+                    userAuthService.getAuthenticatedUser(accessToken)
                 }.getOrNull()
             }
 
