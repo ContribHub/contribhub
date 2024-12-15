@@ -4,4 +4,6 @@ import org.contribhub.api.domain.opensourcerepository.entity.TopicRepositoryEnti
 import org.contribhub.api.domain.opensourcerepository.entity.TopicRepositoryId
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface TopicRepositoryEntityRepository : JpaRepository<TopicRepositoryEntity, TopicRepositoryId>
+interface TopicRepositoryEntityRepository :
+    CustomTopicRepositoryEntityRepository,
+    JpaRepository<TopicRepositoryEntity, TopicRepositoryId>

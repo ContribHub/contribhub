@@ -1,6 +1,7 @@
 package org.contribhub.api.domain.opensourcerepository.repository.repositories
 
 import com.linecorp.kotlinjdsl.support.spring.data.jpa.repository.KotlinJdslJpqlExecutor
+import org.contribhub.api.domain.opensourcerepository.dto.request.RepositorySearchKey
 import org.contribhub.api.domain.opensourcerepository.dto.response.RepositoryDetailResponse
 import org.contribhub.api.domain.opensourcerepository.dto.response.RepositoryListResponse
 import org.contribhub.api.domain.opensourcerepository.entity.LanguageEntity
@@ -14,6 +15,8 @@ class CustomRepositoryEntityRepositoryImpl(
     override fun findRepositoryListPage(
         lastId: Long,
         pageable: Pageable,
+        searchKey: RepositorySearchKey,
+        repoInTopicList: List<Long>,
     ): List<RepositoryListResponse> {
         /**
          * TODO : 일반join을 사용하면 조인이 중복되어 두번 발생하는 문제가 발생,
@@ -37,14 +40,27 @@ class CustomRepositoryEntityRepositoryImpl(
                 entity(RepositoryEntity::class),
 //                leftFetchJoin(RepositoryEntity::languageEntity),
 //                leftFetchJoin(RepositoryEntity::licenseEntity)
-                leftJoin(
-                    LanguageEntity::class,
-                ).on(path(LanguageEntity::languageSeq).eq(path(RepositoryEntity::languageEntity).path(LanguageEntity::languageSeq))),
-                leftJoin(
-                    LicenseEntity::class,
-                ).on(path(LicenseEntity::licenSeq).eq(path(RepositoryEntity::licenseEntity).path(LicenseEntity::licenSeq))),
-            ).where(
+//                leftJoin(
+//                    LanguageEntity::class,
+//                ).on(path(LanguageEntity::languageSeq).eq(path(RepositoryEntity::languageEntity).path(LanguageEntity::languageSeq))),
+//                leftJoin(
+//                    LicenseEntity::class,
+//                ).on(path(LicenseEntity::licenSeq).eq(path(RepositoryEntity::licenseEntity).path(LicenseEntity::licenSeq))),
+            ).whereAnd(
+                // TODO 동적쿼리에 사용된 표현식은 별도로 클래스로 뺴면 좋을듯 - 키워드가 더 늘어날수도 있기 때문에.
                 path(RepositoryEntity::repoSeq).gt(lastId),
+                repoInTopicList.isNotEmpty().let {
+                    if (it) path(RepositoryEntity::repoSeq).`in`(repoInTopicList) else null
+                },
+                searchKey.licenId?.let {
+                    path(RepositoryEntity::licenseEntity).path(LicenseEntity::licenSeq).eq(searchKey.licenId)
+                },
+                searchKey.languageId?.let {
+                    path(RepositoryEntity::languageEntity).path(LanguageEntity::languageSeq).eq(searchKey.languageId)
+                },
+                searchKey.repoName?.let {
+                    path(RepositoryEntity::repoFullName).like("%$it%")
+                },
             ).orderBy(
                 path(RepositoryEntity::repoSeq).asc(),
             )

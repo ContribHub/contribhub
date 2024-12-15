@@ -2,6 +2,7 @@ package org.contribhub.api.domain.opensourcerepository.controller
 
 import org.contribhub.api.common.response.ResponseService
 import org.contribhub.api.common.response.success.CustomSuccessResponse
+import org.contribhub.api.domain.opensourcerepository.dto.request.RepositorySearchKey
 import org.contribhub.api.domain.opensourcerepository.dto.response.IssueListResponse
 import org.contribhub.api.domain.opensourcerepository.dto.response.RepositoryDetailResponse
 import org.contribhub.api.domain.opensourcerepository.dto.response.RepositoryListResponse
@@ -17,13 +18,31 @@ class RepositoryController(
     @Autowired private val responseService: ResponseService,
     @Autowired private val repositoryService: RepositoryService,
 ) {
+    /**
+     * TODO : 검색조건이 늘어나면 body에 넣어서 객체로 검색어 관리하는게 좋아보임.
+     *        현재는 단건 조건에 대해서만 처리했는데, 각 키워드가 여러개 들어오는 경우도 고려해야 할듯.
+     */
+
     @GetMapping("/repositories")
     fun getRepositoryList(
+        @RequestParam(name = "licenId", required = false) licenId: Long?,
+        @RequestParam(name = "topicId", required = false) topicId: Long?,
+        @RequestParam(name = "languageId", required = false) languageId: Long?,
+        @RequestParam(name = "repoName", required = false) repoName: String?,
         @RequestParam(name = "lastId", required = false, defaultValue = "0") lastId: Long,
         @RequestParam(name = "size", required = false, defaultValue = "10") size: Int,
     ): CustomSuccessResponse<List<RepositoryListResponse>> {
+        // 검색키워드 dto 변환
+        val searchKey =
+            RepositorySearchKey(
+                licenId = licenId,
+                topicId = topicId,
+                languageId = languageId,
+                repoName = repoName,
+            )
+
         // TODO : entity <-> dto간 변환은 별도의 매퍼클래스를 두어 처리하는 것이 좋을 듯 - 당장은 구조가 복잡해지니 아래와 같이 사용
-        return responseService.getCustomSuccessResponse(repositoryService.getRepositoryList(lastId, size))
+        return responseService.getCustomSuccessResponse(repositoryService.getRepositoryList(lastId, size, searchKey))
     }
 
     @GetMapping("/repositories/{repoId}")
