@@ -31,10 +31,6 @@ dependencies {
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
-// plain jar 생성방지를 위한 설정추가
-tasks.getByName<Jar>("jar") {
-    enabled = false
-}
 
 tasks.test {
     systemProperty("spring.profiles.active", "test")
@@ -42,6 +38,15 @@ tasks.test {
     dependsOn(":infra:test")
 }
 
-tasks.jar {
-    from(sourceSets.main.get().resources)  // resources를 JAR에 포함시킴
+// plain jar 생성방지를 위한 설정추가
+tasks.getByName<Jar>("jar") {
+    enabled = false
+}
+
+tasks.named<org.springframework.boot.gradle.tasks.bundling.BootJar>("bootJar") {
+    enabled = true
+}
+
+tasks.named<org.springframework.boot.gradle.tasks.run.BootRun>("bootRun") {
+    enabled = true
 }

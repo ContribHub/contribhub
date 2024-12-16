@@ -3,10 +3,13 @@ package org.contribhub.infra.config
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Import
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing
+import org.springframework.context.annotation.PropertySource
 
 @Configuration
-@EnableJpaAuditing
-@Import(WebClientConfig::class)
 @ComponentScan("org.contribhub.infra")
+@Import(WebClientConfig::class, JpaConfig::class)
+@PropertySource(
+    value = ["classpath:application-infra.yml", "classpath:application-infra-\${spring.profiles.active}.yml"],
+    factory = YamlPropertySourceFactory::class
+)
 class InfraConfig
