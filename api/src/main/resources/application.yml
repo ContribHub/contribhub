@@ -1,9 +1,3 @@
 spring:
   application:
     name: contribhub
-
-api:
-  github:
-    auth-token: ${GIT_AUTH_TOKEN}
-    client-id: ${CLIENT_ID}
-    client-secret: ${CLIENT_SECRET}

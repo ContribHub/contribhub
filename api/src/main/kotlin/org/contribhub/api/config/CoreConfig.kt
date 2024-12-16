@@ -1,14 +1,14 @@
 package org.contribhub.api.config
 
-import org.contribhub.api.infra.adapter.GithubAuthAdapter
-import org.contribhub.api.infra.adapter.LanguageAdapter
-import org.contribhub.api.infra.adapter.LicenseAdapter
-import org.contribhub.api.infra.adapter.RepositoryAdapter
-import org.contribhub.api.infra.adapter.TopicAdapter
-import org.contribhub.api.infra.http.GithubClient
 import org.contribhub.core.service.service.RepositoryService
 import org.contribhub.core.service.service.SearchKeywordService
 import org.contribhub.core.service.service.UserAuthService
+import org.contribhub.infra.adapter.GithubAuthAdapter
+import org.contribhub.infra.adapter.LanguageAdapter
+import org.contribhub.infra.adapter.LicenseAdapter
+import org.contribhub.infra.adapter.RepositoryAdapter
+import org.contribhub.infra.adapter.TopicAdapter
+import org.contribhub.infra.http.GithubClient
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
