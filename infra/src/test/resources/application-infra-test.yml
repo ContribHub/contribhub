@@ -1,0 +1,26 @@
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;MODE=PostgreSQL
+    username: test
+    password: test
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 50
+        format_sql: true
+        order_updates: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+api:
+  github:
+    auth-token: "test"
+    client-id: "test"
+    client-secret: "test"
