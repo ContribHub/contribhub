@@ -16,6 +16,11 @@ allprojects {
 subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
+    dependencies {
+        testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    }
+
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(21)

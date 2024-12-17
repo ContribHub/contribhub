@@ -10,18 +10,23 @@ plugins {
 dependencies {
     implementation(project(":core"))
 
+    // kotlin jdsl
+    implementation("com.linecorp.kotlin-jdsl:jpql-dsl:${Versions.KOTLIN_JSDL}")
+    implementation("com.linecorp.kotlin-jdsl:jpql-render:${Versions.KOTLIN_JSDL}")
+    implementation("com.linecorp.kotlin-jdsl:spring-data-jpa-support:${Versions.KOTLIN_JSDL}")
+    implementation("com.linecorp.kotlin-jdsl:hibernate-support:${Versions.KOTLIN_JSDL}")
+//    implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-start-jakarta:${Versions.KOTLIN_JSDL}")
+//    implementation("com.linecorp.kotlin-jdsl:hibernate-kotlin-jdsl-jakarta:${Versions.KOTLIN_JSDL}")
+
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework:spring-webflux")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:${Versions.COROUTINE_VERSION}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.JACKSON_KOTLIN}")
-    implementation("org.springframework.boot:spring-boot-starter-web")
 
     // 로그 관련 라이브러리
     implementation("io.github.oshai:kotlin-logging-jvm:${Versions.LOGGER}")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // db연동관련 테스트를 위한 테스트 컨테이너 설정.
     testImplementation("org.testcontainers:testcontainers:${Versions.TEST_CONTAINER}")
@@ -33,15 +38,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
     runtimeOnly("org.postgresql:postgresql")
+    /**
+     * api 모듈 테스트 시 h2 db 사용을 위한 라이브러리
+     * infra 모듈 테스트 시에는 testcontainer를 사용 (testcontainer 설정이 infra.test 패키지에 있어, api 모듈의 spring boot 테스트 시 db 설정을 할 수 없어 추가됨)
+     */
     runtimeOnly("com.h2database:h2:2.3.232")
-
-    // kotlin jdsl
-    implementation("com.linecorp.kotlin-jdsl:jpql-dsl:${Versions.KOTLIN_JSDL}")
-    implementation("com.linecorp.kotlin-jdsl:jpql-render:${Versions.KOTLIN_JSDL}")
-    implementation("com.linecorp.kotlin-jdsl:spring-data-jpa-support:${Versions.KOTLIN_JSDL}")
-    implementation("com.linecorp.kotlin-jdsl:hibernate-support:${Versions.KOTLIN_JSDL}")
-//    implementation("com.linecorp.kotlin-jdsl:spring-data-kotlin-jdsl-start-jakarta:${Versions.KOTLIN_JSDL}")
-//    implementation("com.linecorp.kotlin-jdsl:hibernate-kotlin-jdsl-jakarta:${Versions.KOTLIN_JSDL}")
 }
 
 tasks.test {
