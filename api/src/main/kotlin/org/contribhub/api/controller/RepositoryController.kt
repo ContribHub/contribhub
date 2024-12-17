@@ -2,9 +2,9 @@ package org.contribhub.api.controller
 
 import org.contribhub.api.common.response.ResponseService
 import org.contribhub.api.common.response.success.CustomSuccessResponse
-import org.contribhub.core.service.entity.Issue
-import org.contribhub.core.service.entity.Repository
-import org.contribhub.core.service.entity.RepositoryDetail
+import org.contribhub.api.dto.response.IssueListResponse
+import org.contribhub.api.dto.response.RepositoryDetailResponse
+import org.contribhub.api.dto.response.RepositoryListResponse
 import org.contribhub.core.service.entity.RepositorySearchKey
 import org.contribhub.core.service.service.RepositoryService
 import org.springframework.beans.factory.annotation.Autowired
@@ -31,7 +31,7 @@ class RepositoryController(
         @RequestParam(name = "repoName", required = false) repoName: String?,
         @RequestParam(name = "lastId", required = false, defaultValue = "0") lastId: Long,
         @RequestParam(name = "size", required = false, defaultValue = "10") size: Int,
-    ): CustomSuccessResponse<List<Repository>> {
+    ): CustomSuccessResponse<List<RepositoryListResponse>> {
         // 검색키워드 dto 변환
         val searchKey =
             RepositorySearchKey(
@@ -42,20 +42,29 @@ class RepositoryController(
             )
 
         // TODO : entity <-> dto간 변환은 별도의 매퍼클래스를 두어 처리하는 것이 좋을 듯 - 당장은 구조가 복잡해지니 아래와 같이 사용
-        return responseService.getCustomSuccessResponse(repositoryService.getRepositoryList(lastId, size, searchKey))
+        val repositories = repositoryService.getRepositoryList(lastId, size, searchKey)
+        val response = repositories.map(RepositoryListResponse::from)
+        return responseService.getCustomSuccessResponse(response)
     }
 
     @GetMapping("/repositories/{repoId}")
     fun getRepositoryDetail(
         @PathVariable(name = "repoId", required = true) repoId: Long,
-    ): CustomSuccessResponse<RepositoryDetail> =
-        responseService.getCustomSuccessResponse(repositoryService.getRepositoryDetail(repoId))
+    ): CustomSuccessResponse<RepositoryDetailResponse> {
+        val repositoryDetail = repositoryService.getRepositoryDetail(repoId)
+        val response = RepositoryDetailResponse.from(repositoryDetail)
+        return responseService.getCustomSuccessResponse(response)
+    }
+
 
     @GetMapping("/repositories/{repoId}/issues")
     fun getIssueListInRepository(
         @PathVariable(name = "repoId", required = true) repoId: Long,
         @RequestParam(name = "lastId", required = false, defaultValue = "0") lastId: Long,
         @RequestParam(name = "size", required = false, defaultValue = "10") size: Int,
-    ): CustomSuccessResponse<List<Issue>> =
-        responseService.getCustomSuccessResponse(repositoryService.getIssueListInRepository(repoId, lastId, size))
+    ): CustomSuccessResponse<List<IssueListResponse>> {
+        val issues = repositoryService.getIssueListInRepository(repoId, lastId, size)
+        val response = issues.map(IssueListResponse::from)
+        return responseService.getCustomSuccessResponse(response)
+    }
 }

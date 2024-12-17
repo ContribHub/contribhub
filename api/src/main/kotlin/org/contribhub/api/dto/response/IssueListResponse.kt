@@ -1,5 +1,7 @@
 package org.contribhub.api.dto.response
 
+import org.contribhub.core.service.entity.Issue
+
 data class IssueListResponse(
     // 이슈테이블 식별자
     val id: Long,
@@ -10,4 +12,17 @@ data class IssueListResponse(
     val issueOwnerId: String,
     val issueOwnerName: String,
     val openYn: Boolean,
-)
+) {
+    companion object {
+        fun from(issue: Issue): IssueListResponse =
+            IssueListResponse(
+                id = issue.id,
+                issueId = issue.issueId,
+                issueTitle = issue.issueTitle,
+                issueUrl = issue.issueUrl,
+                issueOwnerId = issue.issueOwnerId,
+                issueOwnerName = issue.issueOwnerName,
+                openYn = issue.openYn,
+            )
+    }
+}
