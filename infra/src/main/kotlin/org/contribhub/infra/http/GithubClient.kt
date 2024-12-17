@@ -1,6 +1,8 @@
 package org.contribhub.infra.http
 
+import org.contribhub.infra.http.dto.GithubCodeToAccessRequest
 import org.contribhub.infra.http.dto.GithubCodeToAccessTokenResponse
+import org.contribhub.infra.http.dto.GithubGetAuthenticatedUserResponse
 import org.contribhub.infra.http.dto.GithubRepositoryResponse
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.http.HttpHeaders
@@ -62,7 +64,7 @@ class GithubClient(
             .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
             .body(
                 BodyInserters.fromValue(
-                    org.contribhub.infra.http.dto.GithubCodeToAccessRequest(
+                    GithubCodeToAccessRequest(
                         clientId = clientId,
                         clientSecret = clientSecret,
                         code = code,
@@ -76,7 +78,7 @@ class GithubClient(
     /**
      * @see <a href="https://docs.github.com/en/rest/users/users?apiVersion=2022-11-28#get-the-authenticated-user">Get the authenticated User</a>
      */
-    suspend fun getAuthenticatedUser(accessToken: String): org.contribhub.infra.http.dto.GithubGetAuthenticatedUserResponse =
+    suspend fun getAuthenticatedUser(accessToken: String): GithubGetAuthenticatedUserResponse =
         webClient
             .get()
             .uri("$GITHUB_API_HOST/user")
