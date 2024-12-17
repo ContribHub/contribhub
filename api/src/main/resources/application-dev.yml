@@ -2,5 +2,5 @@ spring:
   application:
     name: contribhub
   config:
-    activate:
-      on-profile: dev
+    import:
+      - classpath:/application-infra-dev.yml

@@ -27,9 +27,9 @@ class TestConfig {
     fun dataSource(postgresContainer: PostgreSQLContainer<*>): DataSource {
         return HikariDataSource(
             HikariConfig().apply {
-                jdbcUrl = postgresContainer.getJdbcUrl()
-                username = postgresContainer.getUsername()
-                password = postgresContainer.getPassword()
+                jdbcUrl = postgresContainer.jdbcUrl
+                username = postgresContainer.username
+                password = postgresContainer.password
                 driverClassName = "org.postgresql.Driver"
             },
         )

@@ -1,9 +1,0 @@
-spring:
-  profiles:
-    default: test
-
-api:
-  github:
-    auth-token: "test"
-    client-id: "test"
-    client-secret: "test"

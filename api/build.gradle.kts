@@ -34,8 +34,7 @@ dependencies {
 
 tasks.test {
     systemProperty("spring.profiles.active", "test")
-    dependsOn(":core:test")
-    dependsOn(":infra:test")
+    dependsOn(":core:test", ":infra:test")
 }
 
 // plain jar 생성방지를 위한 설정추가

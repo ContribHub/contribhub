@@ -1,5 +1,0 @@
-spring:
-  application:
-    name: contribhub
-  profiles:
-    default: test

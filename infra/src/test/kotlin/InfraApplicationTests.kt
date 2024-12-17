@@ -1,13 +1,9 @@
 
-import org.contribhub.infra.config.TestConfig
+import org.contribhub.infra.config.InfraConfig
 import org.junit.jupiter.api.Test
-import org.springframework.context.annotation.Import
-import org.springframework.test.context.ActiveProfiles
-import org.testcontainers.junit.jupiter.Testcontainers
+import org.springframework.boot.test.context.SpringBootTest
 
-@Testcontainers
-@Import(TestConfig::class)
-@ActiveProfiles("test")
+@SpringBootTest(classes = [InfraConfig::class])
 class InfraApplicationTests {
     @Test
     fun contextLoads() {

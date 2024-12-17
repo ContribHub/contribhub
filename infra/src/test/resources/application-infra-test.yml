@@ -2,11 +2,11 @@ spring:
   config:
     activate:
       on-profile: test
-#  datasource:
-#    driver-class-name: org.postgresql.Driver
-#    url: jdbc:postgresql://localhost:5432/testdb
-#    username: test
-#    password: test
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:test;MODE=PostgreSQL
+    username: test
+    password: test
   jpa:
     hibernate:
       ddl-auto: create
@@ -19,5 +19,8 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
 
-
-
+api:
+  github:
+    auth-token: "test"
+    client-id: "test"
+    client-secret: "test"
