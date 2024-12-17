@@ -1,10 +1,10 @@
 package org.contribhub.infra.adapter
 
-import org.contribhub.core.service.entity.Issue
-import org.contribhub.core.service.entity.Repository
-import org.contribhub.core.service.entity.RepositoryDetail
-import org.contribhub.core.service.entity.RepositorySearchKey
-import org.contribhub.core.service.repository.RepositoryRepository
+import org.contribhub.core.entity.Issue
+import org.contribhub.core.entity.Repository
+import org.contribhub.core.entity.RepositoryDetail
+import org.contribhub.core.entity.RepositorySearchKey
+import org.contribhub.core.repository.RepositoryRepository
 import org.contribhub.infra.repository.entity.IssueEntity
 import org.contribhub.infra.repository.entity.RepositoryEntity
 import org.contribhub.infra.repository.issues.IssueEntityRepository
@@ -20,7 +20,7 @@ class RepositoryAdapter(
     private val repositoryEntityRepository: RepositoryEntityRepository,
     private val topicRepositoryEntityRepository: TopicRepositoryEntityRepository,
     private val issueEntityRepository: IssueEntityRepository,
-) : RepositoryRepository{
+) : RepositoryRepository {
     @Transactional(readOnly = true)
     override fun findRepositories(
         lastId: Long,

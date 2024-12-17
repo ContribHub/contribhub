@@ -1,7 +1,7 @@
 package org.contribhub.infra.adapter
 
-import org.contribhub.core.service.entity.License
-import org.contribhub.core.service.repository.LicenseRepository
+import org.contribhub.core.entity.License
+import org.contribhub.core.repository.LicenseRepository
 import org.contribhub.infra.repository.entity.LicenseEntity
 import org.contribhub.infra.repository.licenses.LicenseEntityRepository
 import org.springframework.data.domain.PageRequest

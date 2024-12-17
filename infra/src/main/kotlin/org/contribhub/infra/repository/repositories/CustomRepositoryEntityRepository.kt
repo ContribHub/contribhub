@@ -1,6 +1,6 @@
 package org.contribhub.infra.repository.repositories
 
-import org.contribhub.core.service.entity.RepositorySearchKey
+import org.contribhub.core.entity.RepositorySearchKey
 import org.contribhub.infra.repository.entity.GithubRepositoryEntity
 import org.contribhub.infra.repository.entity.RepositoryEntity
 import org.springframework.data.domain.Pageable

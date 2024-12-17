@@ -1,6 +1,6 @@
 package org.contribhub.api.dto.response
 
-import org.contribhub.core.service.entity.Issue
+import org.contribhub.core.entity.Issue
 
 data class IssueListResponse(
     // 이슈테이블 식별자

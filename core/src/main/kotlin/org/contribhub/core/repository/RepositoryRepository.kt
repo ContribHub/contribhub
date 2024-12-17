@@ -1,9 +1,9 @@
-package org.contribhub.core.service.repository
+package org.contribhub.core.repository
 
-import org.contribhub.core.service.entity.Issue
-import org.contribhub.core.service.entity.Repository
-import org.contribhub.core.service.entity.RepositoryDetail
-import org.contribhub.core.service.entity.RepositorySearchKey
+import org.contribhub.core.entity.Issue
+import org.contribhub.core.entity.Repository
+import org.contribhub.core.entity.RepositoryDetail
+import org.contribhub.core.entity.RepositorySearchKey
 
 // todo 네이밍 수정 필요
 interface RepositoryRepository {

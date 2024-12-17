@@ -1,6 +1,6 @@
 package org.contribhub.api.dto.response
 
-import org.contribhub.core.service.entity.Repository
+import org.contribhub.core.entity.Repository
 
 data class RepositoryListResponse(
     // contribhub의 레포지토리 테이블 시퀀스

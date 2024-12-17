@@ -2,9 +2,9 @@ package org.contribhub.api.config
 
 import io.github.oshai.kotlinlogging.KotlinLogging
 import org.contribhub.api.common.response.ResponseService
-import org.contribhub.core.service.exception.CustomException
+import org.contribhub.core.exception.CustomException
 import org.contribhub.api.common.response.exception.CustomExceptionResponse
-import org.contribhub.core.service.exception.CustomExceptionStatus
+import org.contribhub.core.exception.CustomExceptionStatus
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice

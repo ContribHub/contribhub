@@ -1,7 +1,7 @@
 package org.contribhub.infra.adapter
 
-import org.contribhub.core.service.entity.UserInfo
-import org.contribhub.core.service.repository.GithubAuthRepository
+import org.contribhub.core.entity.UserInfo
+import org.contribhub.core.repository.GithubAuthRepository
 import org.contribhub.infra.http.GithubClient
 import org.springframework.stereotype.Component
 

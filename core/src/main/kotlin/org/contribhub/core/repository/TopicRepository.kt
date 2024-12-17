@@ -1,6 +1,6 @@
-package org.contribhub.core.service.repository
+package org.contribhub.core.repository
 
-import org.contribhub.core.service.entity.Topic
+import org.contribhub.core.entity.Topic
 
 interface TopicRepository {
     fun getTopics(): List<Topic>

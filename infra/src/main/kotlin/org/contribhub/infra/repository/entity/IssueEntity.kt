@@ -10,7 +10,7 @@ import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
-import org.contribhub.core.service.entity.Issue
+import org.contribhub.core.entity.Issue
 import org.contribhub.infra.repository.entity.common.BaseTimeEntity
 
 @Entity

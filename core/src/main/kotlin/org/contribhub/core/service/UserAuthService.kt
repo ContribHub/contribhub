@@ -1,7 +1,7 @@
-package org.contribhub.core.service.service
+package org.contribhub.core.service
 
-import org.contribhub.core.service.entity.UserInfo
-import org.contribhub.core.service.repository.GithubAuthRepository
+import org.contribhub.core.entity.UserInfo
+import org.contribhub.core.repository.GithubAuthRepository
 
 class UserAuthService(
     private val githubAuthRepository: GithubAuthRepository,

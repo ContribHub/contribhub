@@ -11,8 +11,8 @@ import jakarta.persistence.ManyToOne
 import jakarta.persistence.OneToMany
 import jakarta.persistence.Table
 import jakarta.persistence.UniqueConstraint
-import org.contribhub.core.service.entity.Repository
-import org.contribhub.core.service.entity.RepositoryDetail
+import org.contribhub.core.entity.Repository
+import org.contribhub.core.entity.RepositoryDetail
 import org.contribhub.infra.repository.entity.common.BaseTimeEntity
 
 @Entity

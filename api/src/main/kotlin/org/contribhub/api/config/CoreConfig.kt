@@ -1,8 +1,8 @@
 package org.contribhub.api.config
 
-import org.contribhub.core.service.service.RepositoryService
-import org.contribhub.core.service.service.SearchKeywordService
-import org.contribhub.core.service.service.UserAuthService
+import org.contribhub.core.service.RepositoryService
+import org.contribhub.core.service.SearchKeywordService
+import org.contribhub.core.service.UserAuthService
 import org.contribhub.infra.adapter.GithubAuthAdapter
 import org.contribhub.infra.adapter.LanguageAdapter
 import org.contribhub.infra.adapter.LicenseAdapter

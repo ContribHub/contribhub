@@ -5,7 +5,7 @@ import org.contribhub.api.common.response.success.CustomSuccessResponse
 import org.contribhub.api.dto.searchkeyword.LanguageResponse
 import org.contribhub.api.dto.searchkeyword.LicenseResponse
 import org.contribhub.api.dto.searchkeyword.TopicResponse
-import org.contribhub.core.service.service.SearchKeywordService
+import org.contribhub.core.service.SearchKeywordService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController

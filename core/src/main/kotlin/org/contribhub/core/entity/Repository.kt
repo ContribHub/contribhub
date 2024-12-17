@@ -1,4 +1,4 @@
-package org.contribhub.core.service.entity
+package org.contribhub.core.entity
 
 data class Repository(
     val repoId: Long,

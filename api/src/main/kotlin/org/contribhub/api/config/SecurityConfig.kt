@@ -2,7 +2,7 @@ package org.contribhub.api.config
 
 import jakarta.servlet.http.HttpServletResponse
 import org.contribhub.api.controller.filter.GithubAuthFilter
-import org.contribhub.core.service.service.UserAuthService
+import org.contribhub.core.service.UserAuthService
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.HttpMethod

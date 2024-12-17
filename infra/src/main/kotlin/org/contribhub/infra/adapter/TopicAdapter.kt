@@ -1,7 +1,7 @@
 package org.contribhub.infra.adapter
 
-import org.contribhub.core.service.entity.Topic
-import org.contribhub.core.service.repository.TopicRepository
+import org.contribhub.core.entity.Topic
+import org.contribhub.core.repository.TopicRepository
 import org.contribhub.infra.http.dto.TopicInfoDTO
 import org.contribhub.infra.repository.entity.TopicEntity
 import org.contribhub.infra.repository.topics.TopicEntityRepository

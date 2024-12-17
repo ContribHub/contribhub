@@ -1,4 +1,4 @@
-package org.contribhub.core.service.exception
+package org.contribhub.core.exception
 
 enum class CustomExceptionStatus(
     val message: String,

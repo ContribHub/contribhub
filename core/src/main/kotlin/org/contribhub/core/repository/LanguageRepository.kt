@@ -1,6 +1,6 @@
-package org.contribhub.core.service.repository
+package org.contribhub.core.repository
 
-import org.contribhub.core.service.entity.Language
+import org.contribhub.core.entity.Language
 
 interface LanguageRepository {
     fun find(

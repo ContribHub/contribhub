@@ -1,11 +1,11 @@
-package org.contribhub.core.service.service
+package org.contribhub.core.service
 
-import org.contribhub.core.service.entity.Language
-import org.contribhub.core.service.entity.License
-import org.contribhub.core.service.entity.Topic
-import org.contribhub.core.service.repository.LanguageRepository
-import org.contribhub.core.service.repository.LicenseRepository
-import org.contribhub.core.service.repository.TopicRepository
+import org.contribhub.core.entity.Language
+import org.contribhub.core.entity.License
+import org.contribhub.core.entity.Topic
+import org.contribhub.core.repository.LanguageRepository
+import org.contribhub.core.repository.LicenseRepository
+import org.contribhub.core.repository.TopicRepository
 
 class SearchKeywordService(
     private val languageRepository: LanguageRepository,

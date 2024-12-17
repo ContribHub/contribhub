@@ -1,12 +1,12 @@
-package org.contribhub.core.service.service
+package org.contribhub.core.service
 
-import org.contribhub.core.service.entity.Issue
-import org.contribhub.core.service.entity.Repository
-import org.contribhub.core.service.entity.RepositoryDetail
-import org.contribhub.core.service.entity.RepositorySearchKey
-import org.contribhub.core.service.exception.CustomException
-import org.contribhub.core.service.exception.CustomExceptionStatus
-import org.contribhub.core.service.repository.RepositoryRepository
+import org.contribhub.core.entity.Issue
+import org.contribhub.core.entity.Repository
+import org.contribhub.core.entity.RepositoryDetail
+import org.contribhub.core.entity.RepositorySearchKey
+import org.contribhub.core.exception.CustomException
+import org.contribhub.core.exception.CustomExceptionStatus
+import org.contribhub.core.repository.RepositoryRepository
 
 class RepositoryService(
     private val repositoryRepository: RepositoryRepository

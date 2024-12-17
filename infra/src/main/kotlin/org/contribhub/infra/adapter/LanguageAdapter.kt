@@ -1,7 +1,7 @@
 package org.contribhub.infra.adapter
 
-import org.contribhub.core.service.entity.Language
-import org.contribhub.core.service.repository.LanguageRepository
+import org.contribhub.core.entity.Language
+import org.contribhub.core.repository.LanguageRepository
 import org.contribhub.infra.repository.entity.LanguageEntity
 import org.contribhub.infra.repository.languages.LanguageEntityRepository
 import org.springframework.data.domain.PageRequest

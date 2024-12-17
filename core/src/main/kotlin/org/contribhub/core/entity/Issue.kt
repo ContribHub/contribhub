@@ -1,4 +1,4 @@
-package org.contribhub.core.service.entity
+package org.contribhub.core.entity
 
 data class Issue(
     // 이슈테이블 식별자

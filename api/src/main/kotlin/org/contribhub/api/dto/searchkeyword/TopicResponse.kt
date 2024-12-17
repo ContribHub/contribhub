@@ -2,7 +2,7 @@ package org.contribhub.api.dto.searchkeyword
 
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.databind.annotation.JsonNaming
-import org.contribhub.core.service.entity.Topic
+import org.contribhub.core.entity.Topic
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 data class TopicResponse(

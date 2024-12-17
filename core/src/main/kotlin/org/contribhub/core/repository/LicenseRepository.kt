@@ -1,6 +1,6 @@
-package org.contribhub.core.service.repository
+package org.contribhub.core.repository
 
-import org.contribhub.core.service.entity.License
+import org.contribhub.core.entity.License
 
 interface LicenseRepository {
     fun find(

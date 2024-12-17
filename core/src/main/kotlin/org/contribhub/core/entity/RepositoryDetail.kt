@@ -1,4 +1,4 @@
-package org.contribhub.core.service.entity
+package org.contribhub.core.entity
 
 data class RepositoryDetail(
     // contribhub의 레포지토리 테이블 시퀀스

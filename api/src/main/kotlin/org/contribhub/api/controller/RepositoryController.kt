@@ -5,8 +5,8 @@ import org.contribhub.api.common.response.success.CustomSuccessResponse
 import org.contribhub.api.dto.response.IssueListResponse
 import org.contribhub.api.dto.response.RepositoryDetailResponse
 import org.contribhub.api.dto.response.RepositoryListResponse
-import org.contribhub.core.service.entity.RepositorySearchKey
-import org.contribhub.core.service.service.RepositoryService
+import org.contribhub.core.entity.RepositorySearchKey
+import org.contribhub.core.service.RepositoryService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
