@@ -17,11 +17,13 @@ import javax.sql.DataSource
  * Webclient 사용을 위한 spring-webflux 의존성으로 인해 webflux가 설정되면서 Spring Boot Test가 실행되지 않는 문제가 있음
  * TODO 가상 스레드를 적용하면 Webclient 의존성 제거 가능할 듯
  */
-@EnableAutoConfiguration(exclude = [
-    WebFluxAutoConfiguration::class,
-    ErrorWebFluxAutoConfiguration::class,
-    HttpHandlerAutoConfiguration::class
-])
+@EnableAutoConfiguration(
+    exclude = [
+        WebFluxAutoConfiguration::class,
+        ErrorWebFluxAutoConfiguration::class,
+        HttpHandlerAutoConfiguration::class,
+    ],
+)
 @TestConfiguration
 class TestConfig {
     @Bean
