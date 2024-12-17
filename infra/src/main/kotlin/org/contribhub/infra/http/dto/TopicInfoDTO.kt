@@ -5,6 +5,5 @@ import org.contribhub.core.entity.Topic
 data class TopicInfoDTO(
     val name: String,
 ) {
-    fun toDomain(): Topic =
-        Topic(name = name)
+    fun toDomain(): Topic = Topic(name = name)
 }

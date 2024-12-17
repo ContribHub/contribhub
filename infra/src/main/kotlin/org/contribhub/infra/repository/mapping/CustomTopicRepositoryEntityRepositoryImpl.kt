@@ -21,7 +21,8 @@ class CustomTopicRepositoryEntityRepositoryImpl(
                     ).whereAnd(
                         path(TopicRepositoryEntity::useYn).eq(true),
                         path(TopicRepositoryEntity::topicRepositoryId).path(
-                            TopicRepositoryId::topicSeq).eq(topicId),
+                            TopicRepositoryId::topicSeq,
+                        ).eq(topicId),
                     )
                 }.filterNotNull()
         } ?: emptyList()

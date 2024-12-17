@@ -12,14 +12,17 @@ import org.springframework.transaction.annotation.Transactional
 
 @Component
 class TopicAdapter(
-    private val topicRepository: TopicEntityRepository
-): TopicRepository {
+    private val topicRepository: TopicEntityRepository,
+) : TopicRepository {
     @Transactional(readOnly = true)
-    override fun getTopics(): List<Topic> =
-        topicRepository.getTopics().map(TopicInfoDTO::toDomain)
+    override fun getTopics(): List<Topic> = topicRepository.getTopics().map(TopicInfoDTO::toDomain)
 
     @Transactional(readOnly = true)
-    override fun find(lastId: Long, pageNumber: Int, pageSize: Int): List<Topic> {
+    override fun find(
+        lastId: Long,
+        pageNumber: Int,
+        pageSize: Int,
+    ): List<Topic> {
         var pageable: Pageable = PageRequest.of(pageNumber, pageSize)
 
         return topicRepository

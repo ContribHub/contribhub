@@ -44,6 +44,5 @@ class LicenseEntity(
 
     // 레포지토리의 연관관계는 필요할때 설정.
 
-    fun toDomain(): License =
-        License(name = licenName)
+    fun toDomain(): License = License(name = licenName)
 }

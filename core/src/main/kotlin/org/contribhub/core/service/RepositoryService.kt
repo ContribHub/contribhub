@@ -9,7 +9,7 @@ import org.contribhub.core.exception.CustomExceptionStatus
 import org.contribhub.core.repository.RepositoryRepository
 
 class RepositoryService(
-    private val repositoryRepository: RepositoryRepository
+    private val repositoryRepository: RepositoryRepository,
 ) {
     fun getRepositoryList(
         lastId: Long,
@@ -20,7 +20,7 @@ class RepositoryService(
             lastId = lastId,
             pageNumber = 0,
             pageSize = size,
-            repositorySearchKey
+            repositorySearchKey,
         )
 
     fun getRepositoryDetail(repoId: Long): RepositoryDetail =
@@ -32,6 +32,5 @@ class RepositoryService(
         repoId: Long,
         lastId: Long,
         size: Int,
-    ): List<Issue> =
-        repositoryRepository.findIssuesInRepository(repoId, lastId, pageNumber = 0, pageSize = size)
+    ): List<Issue> = repositoryRepository.findIssuesInRepository(repoId, lastId, pageNumber = 0, pageSize = size)
 }

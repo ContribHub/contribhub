@@ -9,7 +9,6 @@ data class LicenseResponse(
     val licenseName: String,
 ) {
     companion object {
-        fun from(license: License): LicenseResponse =
-            LicenseResponse(licenseName = license.name)
+        fun from(license: License): LicenseResponse = LicenseResponse(licenseName = license.name)
     }
 }

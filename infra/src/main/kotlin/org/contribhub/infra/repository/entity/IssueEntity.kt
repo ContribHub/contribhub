@@ -66,7 +66,6 @@ class IssueEntity(
     var repositoryEntity = repositoryEntity
         protected set
 
-
     fun toDomain(): Issue =
         Issue(
             id = issueSeq!!,
@@ -74,7 +73,7 @@ class IssueEntity(
             issueTitle = issueTitle,
             issueUrl = issueUrl,
             issueOwnerId = issueOwnerId,
-            issueOwnerName =  issueOwnerName,
-            openYn = openYn
+            issueOwnerName = issueOwnerName,
+            openYn = openYn,
         )
 }

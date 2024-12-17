@@ -34,9 +34,8 @@ data class RepositoryDetailResponse(
                     mainLanguage = this.mainLanguage,
                     repoFullName = this.repoFullName,
                     repoDescription = this.repoDescription,
-                    forkCount = this.forkCount
+                    forkCount = this.forkCount,
                 )
             }
-
     }
 }

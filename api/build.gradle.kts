@@ -21,7 +21,6 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-security")
 }
 
-
 tasks.test {
     systemProperty("spring.profiles.active", "test")
     dependsOn(":core:test", ":infra:test")

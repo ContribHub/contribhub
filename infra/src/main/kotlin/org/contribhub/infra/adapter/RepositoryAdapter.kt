@@ -45,7 +45,12 @@ class RepositoryAdapter(
         repositoryEntityRepository.findRepositoryDetail(repoId)?.toDomainRepositoryDetail()
 
     @Transactional(readOnly = true)
-    override fun findIssuesInRepository(repoId: Long, lastId: Long, pageNumber: Int, pageSize: Int): List<Issue> {
+    override fun findIssuesInRepository(
+        repoId: Long,
+        lastId: Long,
+        pageNumber: Int,
+        pageSize: Int,
+    ): List<Issue> {
         val pageable: Pageable = PageRequest.of(pageNumber, pageSize)
 
         return issueEntityRepository.findIssueListPage(repoId, lastId, pageable)

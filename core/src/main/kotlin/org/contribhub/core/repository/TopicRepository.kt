@@ -8,6 +8,6 @@ interface TopicRepository {
     fun find(
         lastId: Long,
         pageNumber: Int,
-        pageSize: Int
+        pageSize: Int,
     ): List<Topic>
 }

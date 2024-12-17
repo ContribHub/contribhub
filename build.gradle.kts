@@ -14,6 +14,7 @@ allprojects {
 }
 
 subprojects {
+    apply(plugin = "org.jlleitschuh.gradle.ktlint")
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     dependencies {
@@ -40,4 +41,15 @@ subprojects {
     tasks.build {
         dependsOn("ktlintCheck")
     }
+}
+
+tasks.build {
+    dependsOn(
+        ":core:ktlintFormat",
+        ":core:ktlintFormat",
+        ":api:ktlintFormat",
+        ":api:ktlintCheck",
+        ":infra:ktlintCheck",
+        ":infra:ktlintCheck",
+    )
 }

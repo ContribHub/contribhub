@@ -6,6 +6,6 @@ interface LicenseRepository {
     fun find(
         lastId: Long,
         pageNumber: Int,
-        pageSize: Int
+        pageSize: Int,
     ): List<License>
 }

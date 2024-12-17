@@ -9,7 +9,6 @@ data class LanguageResponse(
     val languageName: String,
 ) {
     companion object {
-        fun from(language: Language): LanguageResponse =
-            LanguageResponse(languageName = language.name)
+        fun from(language: Language): LanguageResponse = LanguageResponse(languageName = language.name)
     }
 }

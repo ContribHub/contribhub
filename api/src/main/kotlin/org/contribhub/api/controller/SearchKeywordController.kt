@@ -25,7 +25,6 @@ class SearchKeywordController(
         return responseService.getCustomSuccessResponse(response)
     }
 
-
     @GetMapping("/licenses")
     fun searchKeywordLicense(
         @RequestParam(name = "lastId", required = false, defaultValue = "0") lastId: Long,
@@ -35,7 +34,6 @@ class SearchKeywordController(
         val response = licenses.map(LicenseResponse::from)
         return responseService.getCustomSuccessResponse(response)
     }
-
 
     @GetMapping("/topics")
     fun searchKeywordTopic(

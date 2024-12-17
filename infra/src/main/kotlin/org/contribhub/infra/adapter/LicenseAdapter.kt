@@ -10,9 +10,13 @@ import org.springframework.stereotype.Component
 
 @Component
 class LicenseAdapter(
-    private val licenseRepository: LicenseEntityRepository
+    private val licenseRepository: LicenseEntityRepository,
 ) : LicenseRepository {
-    override fun find(lastId: Long, pageNumber: Int, pageSize: Int): List<License> {
+    override fun find(
+        lastId: Long,
+        pageNumber: Int,
+        pageSize: Int,
+    ): List<License> {
         var pageable: Pageable = PageRequest.of(pageNumber, pageSize)
 
         return licenseRepository

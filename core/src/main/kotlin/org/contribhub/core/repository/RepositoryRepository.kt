@@ -21,6 +21,6 @@ interface RepositoryRepository {
         repoId: Long,
         lastId: Long,
         pageNumber: Int,
-        pageSize: Int
+        pageSize: Int,
     ): List<Issue>
 }

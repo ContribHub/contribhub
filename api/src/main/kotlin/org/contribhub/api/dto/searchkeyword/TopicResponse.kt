@@ -9,7 +9,6 @@ data class TopicResponse(
     val topicName: String,
 ) {
     companion object {
-        fun from(topic: Topic): TopicResponse =
-            TopicResponse(topicName = topic.name)
+        fun from(topic: Topic): TopicResponse = TopicResponse(topicName = topic.name)
     }
 }

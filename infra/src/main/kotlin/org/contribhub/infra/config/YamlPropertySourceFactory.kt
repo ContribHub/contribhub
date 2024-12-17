@@ -12,7 +12,7 @@ import org.springframework.core.io.support.PropertySourceFactory
 class YamlPropertySourceFactory : PropertySourceFactory {
     override fun createPropertySource(
         name: String?,
-        resource: EncodedResource
+        resource: EncodedResource,
     ): org.springframework.core.env.PropertySource<*> {
         val factory = YamlPropertiesFactoryBean()
         factory.setResources(resource.resource)

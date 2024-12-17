@@ -56,7 +56,6 @@ class RepositoryController(
         return responseService.getCustomSuccessResponse(response)
     }
 
-
     @GetMapping("/repositories/{repoId}/issues")
     fun getIssueListInRepository(
         @PathVariable(name = "repoId", required = true) repoId: Long,

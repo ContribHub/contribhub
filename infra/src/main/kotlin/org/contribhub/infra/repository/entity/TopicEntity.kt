@@ -57,6 +57,5 @@ class TopicEntity(
 
     // 토픽_레포지토리 중계테이블과의 연관관계는 필요할때 설정.
 
-    fun toDomain(): Topic =
-        Topic(name = topicName)
+    fun toDomain(): Topic = Topic(name = topicName)
 }

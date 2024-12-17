@@ -21,7 +21,7 @@ class CoreConfig {
     fun searchKeywordService(
         languageAdapter: LanguageAdapter,
         topicAdapter: TopicAdapter,
-        licenseAdapter: LicenseAdapter
+        licenseAdapter: LicenseAdapter,
     ): SearchKeywordService = SearchKeywordService(languageAdapter, licenseAdapter, topicAdapter)
 
     @Bean

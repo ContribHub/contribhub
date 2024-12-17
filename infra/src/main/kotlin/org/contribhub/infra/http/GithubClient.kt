@@ -65,7 +65,7 @@ class GithubClient(
                     org.contribhub.infra.http.dto.GithubCodeToAccessRequest(
                         clientId = clientId,
                         clientSecret = clientSecret,
-                        code = code
+                        code = code,
                     ),
                 ),
             ).retrieve()

@@ -29,7 +29,7 @@ data class RepositoryListResponse(
                 starCount = repository.starCount,
                 licenseName = repository.licenseName,
                 mainLanguage = repository.mainLanguage,
-                forkCount = repository.forkCount
+                forkCount = repository.forkCount,
             )
     }
 }

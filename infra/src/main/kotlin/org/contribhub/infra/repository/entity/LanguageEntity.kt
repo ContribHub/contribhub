@@ -34,6 +34,5 @@ class LanguageEntity(
 
     // 레포지토리의 연관관계는 필요할때 설정.
 
-    fun toDomain(): Language =
-        Language(name = language)
+    fun toDomain(): Language = Language(name = language)
 }

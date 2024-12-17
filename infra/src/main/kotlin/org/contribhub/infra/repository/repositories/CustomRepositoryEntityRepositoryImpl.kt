@@ -29,7 +29,8 @@ class CustomRepositoryEntityRepositoryImpl(
         return jpqlExecutor
             .findPage(pageable) {
                 select(entity(RepositoryEntity::class))
-                    .from(entity(RepositoryEntity::class),
+                    .from(
+                        entity(RepositoryEntity::class),
 //                leftFetchJoin(RepositoryEntity::languageEntity),
 //                leftFetchJoin(RepositoryEntity::licenseEntity)
 //                leftJoin(
@@ -38,24 +39,24 @@ class CustomRepositoryEntityRepositoryImpl(
 //                leftJoin(
 //                    LicenseEntity::class,
 //                ).on(path(LicenseEntity::licenSeq).eq(path(RepositoryEntity::licenseEntity).path(LicenseEntity::licenSeq))),
-                ).whereAnd(
-                    // TODO 동적쿼리에 사용된 표현식은 별도로 클래스로 뺴면 좋을듯 - 키워드가 더 늘어날수도 있기 때문에.
-                    path(RepositoryEntity::repoSeq).gt(lastId),
-                    repoInTopicList.isNotEmpty().let {
-                        if (it) path(RepositoryEntity::repoSeq).`in`(repoInTopicList) else null
-                    },
-                    searchKey.licenId?.let {
-                        path(RepositoryEntity::licenseEntity).path(LicenseEntity::licenSeq).eq(searchKey.licenId)
-                    },
-                    searchKey.languageId?.let {
-                        path(RepositoryEntity::languageEntity).path(LanguageEntity::languageSeq).eq(searchKey.languageId)
-                    },
-                    searchKey.repoName?.let {
-                        path(RepositoryEntity::repoFullName).like("%$it%")
-                    },
-                ).orderBy(
-                    path(RepositoryEntity::repoSeq).asc(),
-                )
+                    ).whereAnd(
+                        // TODO 동적쿼리에 사용된 표현식은 별도로 클래스로 뺴면 좋을듯 - 키워드가 더 늘어날수도 있기 때문에.
+                        path(RepositoryEntity::repoSeq).gt(lastId),
+                        repoInTopicList.isNotEmpty().let {
+                            if (it) path(RepositoryEntity::repoSeq).`in`(repoInTopicList) else null
+                        },
+                        searchKey.licenId?.let {
+                            path(RepositoryEntity::licenseEntity).path(LicenseEntity::licenSeq).eq(searchKey.licenId)
+                        },
+                        searchKey.languageId?.let {
+                            path(RepositoryEntity::languageEntity).path(LanguageEntity::languageSeq).eq(searchKey.languageId)
+                        },
+                        searchKey.repoName?.let {
+                            path(RepositoryEntity::repoFullName).like("%$it%")
+                        },
+                    ).orderBy(
+                        path(RepositoryEntity::repoSeq).asc(),
+                    )
             }.filterNotNull()
     }
 
@@ -67,20 +68,31 @@ class CustomRepositoryEntityRepositoryImpl(
         return jpqlExecutor
             .findAll {
                 select(entity(RepositoryEntity::class))
-                    .from(entity(RepositoryEntity::class),
+                    .from(
+                        entity(RepositoryEntity::class),
 //                leftFetchJoin(RepositoryEntity::languageEntity),
 //                leftFetchJoin(RepositoryEntity::licenseEntity)
-                    leftJoin(
-                        LanguageEntity::class,
-                    ).on(path(LanguageEntity::languageSeq).eq(path(RepositoryEntity::languageEntity).path(
-                        LanguageEntity::languageSeq))),
-                    leftJoin(
-                        LicenseEntity::class,
-                    ).on(path(LicenseEntity::licenSeq).eq(path(RepositoryEntity::licenseEntity).path(
-                        LicenseEntity::licenSeq))),
-                ).where(
-                    path(RepositoryEntity::repoSeq).eq(repoId),
-                )
+                        leftJoin(
+                            LanguageEntity::class,
+                        ).on(
+                            path(LanguageEntity::languageSeq).eq(
+                                path(RepositoryEntity::languageEntity).path(
+                                    LanguageEntity::languageSeq,
+                                ),
+                            ),
+                        ),
+                        leftJoin(
+                            LicenseEntity::class,
+                        ).on(
+                            path(LicenseEntity::licenSeq).eq(
+                                path(RepositoryEntity::licenseEntity).path(
+                                    LicenseEntity::licenSeq,
+                                ),
+                            ),
+                        ),
+                    ).where(
+                        path(RepositoryEntity::repoSeq).eq(repoId),
+                    )
             }.firstOrNull()
     }
 }

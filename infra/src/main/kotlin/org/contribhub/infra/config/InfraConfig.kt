@@ -12,7 +12,7 @@ import org.springframework.context.annotation.PropertySource
 @PropertySource(
     value = ["classpath:application-infra.yml", "classpath:application-infra-\${spring.profiles.active}.yml"],
     ignoreResourceNotFound = true,
-    factory = YamlPropertySourceFactory::class
+    factory = YamlPropertySourceFactory::class,
 )
 @EnableAutoConfiguration
 class InfraConfig

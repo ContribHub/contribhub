@@ -1,9 +1,9 @@
 package org.contribhub.api.common.response
 
 import org.contribhub.api.common.response.exception.CustomExceptionResponse
-import org.contribhub.core.exception.CustomExceptionStatus
 import org.contribhub.api.common.response.success.CustomSuccessResponse
 import org.contribhub.api.common.response.success.CustomSuccessStatus
+import org.contribhub.core.exception.CustomExceptionStatus
 import org.springframework.stereotype.Service
 
 @Service
