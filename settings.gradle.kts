@@ -1,1 +1,3 @@
-rootProject.name = "api"
+rootProject.name = "contribhub"
+
+include("api", "core", "infra")

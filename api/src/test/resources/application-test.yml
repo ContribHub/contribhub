@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: contribhub
+  config:
+    activate:
+      on-profile: test
