@@ -6,9 +6,14 @@ import org.contribhub.core.entity.Language
 
 @JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy::class)
 data class LanguageResponse(
+    val languageSeq: Long,
     val languageName: String,
 ) {
     companion object {
-        fun from(language: Language): LanguageResponse = LanguageResponse(languageName = language.name)
+        fun from(language: Language): LanguageResponse =
+            LanguageResponse(
+                languageSeq = language.seq,
+                languageName = language.name,
+            )
     }
 }
