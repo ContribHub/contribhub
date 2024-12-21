@@ -16,13 +16,7 @@ class CustomIssueEntityRepositoryImpl(
         jpqlExecutor
             .findPage(pageable) {
                 select<IssueEntity>(
-                    path(IssueEntity::issueSeq).`as`(expression(Long::class, "id")),
-                    path(IssueEntity::issueId),
-                    path(IssueEntity::issueTitle),
-                    path(IssueEntity::issueUrl),
-                    path(IssueEntity::issueOwnerId),
-                    path(IssueEntity::issueOwnerName),
-                    path(IssueEntity::openYn),
+                    entity(IssueEntity::class),
                 ).from(
                     entity(IssueEntity::class),
                     join(IssueEntity::repositoryEntity),

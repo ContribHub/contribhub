@@ -13,5 +13,6 @@ spring:
           batch_size: 50
         format_sql: true
         order_updates: true
+        default_schema: contribhub
     show-sql: true
 
