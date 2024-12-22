@@ -33,6 +33,7 @@ class SecurityConfig(
                         "/swagger-ui/**",
                         "/swagger-resources/**",
                         "/v3/api-docs/**",
+                        "/health",
                         "/languages",
                         "/licenses",
                         "/topics",
