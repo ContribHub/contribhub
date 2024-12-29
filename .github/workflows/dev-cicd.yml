@@ -9,7 +9,7 @@ on:
 permissions: write-all
 
 env:
-  DOCKER_IMAGE: sh80165/dev-contribhub
+  DOCKER_IMAGE: "sh80165/dev-contribhub"
   # DOCKER_IMAGE_VERSION: ${{ GITHUB_SHA }}
 
 
