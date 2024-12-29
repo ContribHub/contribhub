@@ -9,7 +9,7 @@ on:
 permissions: write-all
 
 env:
-  DOCKER_IMAGE: "sh80165/dev-contribhub"
+  DOCKER_IMAGE: sh80165/dev-contribhub
   # DOCKER_IMAGE_VERSION: ${{ GITHUB_SHA }}
 
 
@@ -69,8 +69,7 @@ jobs:
           echo "New tag to be created: $NEW_TAG"
 
       - name: Docker build
-        run: |
-          echo "docker build --platform linux/amd64 -t ${{ env.DOCKER_IMAGE }}:$NEW_TAG ."
+        run: docker build --platform linux/amd64 -t "${{ env.DOCKER_IMAGE }}:${NEW_TAG}" .
 
       - name: Dockerhub Login
         uses: docker/login-action@v3
@@ -79,8 +78,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Push docker image to docker hub
-        run: | 
-          docker push ${{ env.DOCKER_IMAGE }}:$NEW_TAG
+        run: docker push "${{ env.DOCKER_IMAGE }}:${NEW_TAG}"
 
   deploy:
     runs-on: ubuntu-latest
