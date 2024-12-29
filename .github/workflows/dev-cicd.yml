@@ -72,8 +72,8 @@ jobs:
 
       - name: Docker build
         run: |
-          echo "NEW_TAG: ${{ env.NEW_TAG }}"
-          docker build --platform linux/amd64 -t "${{ env.DOCKER_IMAGE }}:${{ env.NEW_TAG }}" .
+          echo "NEW_TAG: $NEW_TAG"
+          docker build --platform linux/amd64 -t "${{ env.DOCKER_IMAGE }}:$env.NEW_TAG" .
 
       - name: Dockerhub Login
         uses: docker/login-action@v3
@@ -82,7 +82,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Push docker image to docker hub
-        run: docker push "${{ env.DOCKER_IMAGE }}:${{ env.NEW_TAG }}"
+        run: docker push "${{ env.DOCKER_IMAGE }}:$env.NEW_TAG"
 
   deploy:
     runs-on: ubuntu-latest
