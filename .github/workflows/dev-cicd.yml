@@ -44,7 +44,7 @@ jobs:
          files: build/test-results/**/*.xml
 
       - name: Get Docker next version
-      - run : |
+        run : |
           # 레포지토리와 이미지 설정
           REPOSITORY="sh80165/dev-contribhub"
           
@@ -69,7 +69,7 @@ jobs:
           echo "New tag to be created: $NEW_TAG"
 
       - name: Docker build
-      - run: docker build --platform linux/amd64 -t ${{ env.DOCKER_IMAGE }}:$NEW_TAG .
+        run: docker build --platform linux/amd64 -t ${{ env.DOCKER_IMAGE }}:$NEW_TAG .
 
       - name: Dockerhub Login
         uses: docker/login-action@v3
@@ -82,8 +82,8 @@ jobs:
           docker push ${{ env.DOCKER_IMAGE }}:$NEW_TAG
 
   deploy:
+    runs-on: ubuntu-latest
     needs: build # 빌드 작업 완료후에만 배포되도록 설정.
-    runs-on:
 
     steps:
         - name: Deploy Docker image
