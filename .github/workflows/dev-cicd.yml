@@ -93,7 +93,7 @@ jobs:
 
     steps:
         - name: Deploy Docker image
-          uses: appleboy/ssh-action@v1.2.0
+          uses: appleboy/ssh-action@master
           with:
             key: ${{ secrets.SSH_PRIVATE_KEY }}
             host: ${{ secrets.AWS_HOST }}
