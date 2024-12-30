@@ -93,5 +93,12 @@ jobs:
 
     steps:
         - name: Deploy Docker image
-          run : |
-            echo "Deploying version : ${{ needs.build.outputs.NEW_TAG }}"
+          uses: appleboy/ssh-action@v1.2.0
+          with:
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            host: ${{ secrets.AWS_HOST }}
+            username: ${{ secrets.AWS_USER }}
+            script : |
+              pwd
+#              sh dev/deploy.sh "${{ needs.build.outputs.NEW_TAG }}"
+#              echo "Deploying version : ${{ needs.build.outputs.NEW_TAG }}"
