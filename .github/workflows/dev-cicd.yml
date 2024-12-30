@@ -91,4 +91,4 @@ jobs:
     steps:
         - name: Deploy Docker image
           run : |
-            ehco "Deploying version : ${{ needs.build.outputs.NEW_TAG}}"
+            echo "Deploying version : $NEW_TAG"
