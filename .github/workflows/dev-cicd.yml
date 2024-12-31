@@ -98,4 +98,4 @@ jobs:
             host: ${{ secrets.AWS_HOST }}
             username: ${{ secrets.AWS_USER }}
             script : |
-              sh dev/deploy.sh "${{ needs.build.outputs.NEW_TAG }}"
+              sh dev/dev-deploy.sh "${{ needs.build.outputs.NEW_TAG }}"
