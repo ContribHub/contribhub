@@ -2,16 +2,15 @@ name: dev-cicd
 
 on:
   push:
-    branches: ["main", "feat/toy-38-cicd"] ## 테스트를 위해 feat브랜치에 추가.
+    branches: ["main"] ## 테스트를 위해 feat브랜치에 추가.
   pull_request:
-    branches: ["main", "feat/toy-38-cicd"]
+    branches: ["main"]
 
 permissions: write-all
 
 env:
   DOCKER_IMAGE: sh80165/dev-contribhub
   # DOCKER_IMAGE_VERSION: ${{ GITHUB_SHA }}
-
 
 jobs:
   build:
@@ -99,6 +98,4 @@ jobs:
             host: ${{ secrets.AWS_HOST }}
             username: ${{ secrets.AWS_USER }}
             script : |
-              pwd
-#              sh dev/deploy.sh "${{ needs.build.outputs.NEW_TAG }}"
-#              echo "Deploying version : ${{ needs.build.outputs.NEW_TAG }}"
+              sh dev/deploy.sh "${{ needs.build.outputs.NEW_TAG }}"
