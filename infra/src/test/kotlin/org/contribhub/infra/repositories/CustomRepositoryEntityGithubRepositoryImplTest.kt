@@ -13,7 +13,7 @@ import java.time.Instant
 
 // TODO : 메모리 디비 설정을 안해서 테스트 시, 디비가 필요한 테스트 불가. 디비접근 설정 공유를 위해 테스트 주석처리
 @SpringBootTest(classes = [InfraConfig::class])
-class CustomRepositoryEntityGithubRepositoryImpleTest(
+class CustomRepositoryEntityGithubRepositoryImplTest(
     @Autowired private val repositoryEntityRepository: RepositoryEntityRepository,
 ) {
     @Test
